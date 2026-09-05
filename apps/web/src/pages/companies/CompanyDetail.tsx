@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Building2, Globe, MapPin, Users, ArrowLeft, ExternalLink, Plus, Kanban } from 'lucide-react';
+import { Building2, Globe, MapPin, Users, ArrowLeft, ExternalLink, Plus, Kanban, Trash2, Loader2, AlertTriangle } from 'lucide-react';
 import { api } from '../../lib/api';
 import { useToast } from '../../stores/toast';
+import { useAuth } from '../../stores/auth';
 import { formatCurrency } from '../../lib/utils';
 import { Badge } from '../../components/common/Badge';
 
@@ -10,8 +11,11 @@ export const CompanyDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [company, setCompany] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
-  const { error } = useToast();
+  const { error, success } = useToast();
+  const { isAdmin } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,6 +32,21 @@ export const CompanyDetail: React.FC = () => {
       navigate('/companies');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleDeleteCompany = async () => {
+    if (!id) return;
+    setIsDeleting(true);
+    try {
+      await api.delete(`/companies/${id}`);
+      success(`${company?.name || 'Company'} deleted successfully`);
+      navigate('/companies');
+    } catch {
+      error('Failed to delete company');
+    } finally {
+      setIsDeleting(false);
+      setShowDeleteModal(false);
     }
   };
 
@@ -64,17 +83,28 @@ export const CompanyDetail: React.FC = () => {
             </div>
           </div>
 
-          {company.website && (
-            <a
-              href={company.website}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-950 text-cyan-400 hover:underline text-xs"
-            >
-              <Globe className="w-3.5 h-3.5" />
-              <span>Visit Website</span>
-            </a>
-          )}
+          <div className="flex items-center gap-2">
+            {company.website && (
+              <a
+                href={company.website}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-950 text-cyan-400 hover:underline text-xs"
+              >
+                <Globe className="w-3.5 h-3.5" />
+                <span>Visit Website</span>
+              </a>
+            )}
+            {isAdmin && (
+              <button
+                onClick={() => setShowDeleteModal(true)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-rose-800/60 bg-rose-950/40 text-rose-400 hover:bg-rose-900/50 hover:border-rose-700 text-xs transition-colors"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+                <span>Delete</span>
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
@@ -139,6 +169,51 @@ export const CompanyDetail: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Delete Confirmation Modal */}
+      {showDeleteModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl max-w-sm w-full p-6 space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="p-2 rounded-full bg-rose-950/60 border border-rose-800/50">
+                <AlertTriangle className="w-5 h-5 text-rose-400" />
+              </div>
+              <h2 className="text-base font-bold text-slate-100">Delete Company</h2>
+            </div>
+            <p className="text-sm text-slate-400">
+              Are you sure you want to delete{' '}
+              <span className="font-semibold text-slate-200">{company?.name}</span>?
+              This action cannot be undone. Contacts and deals linked to this company will be unlinked.
+            </p>
+            <div className="flex gap-3 justify-end pt-2">
+              <button
+                onClick={() => setShowDeleteModal(false)}
+                disabled={isDeleting}
+                className="px-4 py-2 rounded-lg text-xs font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-colors disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleDeleteCompany}
+                disabled={isDeleting}
+                className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold text-white bg-rose-600 hover:bg-rose-500 border border-rose-500 transition-colors disabled:opacity-60"
+              >
+                {isDeleting ? (
+                  <>
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                    <span>Deleting...</span>
+                  </>
+                ) : (
+                  <>
+                    <Trash2 className="w-3.5 h-3.5" />
+                    <span>Delete Company</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

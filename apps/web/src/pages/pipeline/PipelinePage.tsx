@@ -106,54 +106,52 @@ export const PipelinePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Analytics Metric Bar */}
-      {analytics && (
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
-            <div className="flex items-center justify-between text-slate-400 mb-1">
-              <span className="text-[11px] font-semibold">Total Active Pipeline</span>
-              <TrendingUp className="w-3.5 h-3.5 text-amber-400" />
-            </div>
-            <p className="text-lg font-bold font-mono text-brand-400">
-              {formatCurrency(analytics.totalPipelineValue)}
-            </p>
-            <span className="text-[10px] text-slate-500">{analytics.activeCount} active deals</span>
+      {/* Analytics Metric Bar — always visible; shows 0 when no DB data */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+          <div className="flex items-center justify-between text-slate-400 mb-1">
+            <span className="text-[11px] font-semibold">Total Active Pipeline</span>
+            <TrendingUp className="w-3.5 h-3.5 text-amber-400" />
           </div>
-
-          <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
-            <div className="flex items-center justify-between text-slate-400 mb-1">
-              <span className="text-[11px] font-semibold">Weighted Pipeline Forecast</span>
-              <Target className="w-3.5 h-3.5 text-cyan-400" />
-            </div>
-            <p className="text-lg font-bold font-mono text-cyan-400">
-              {formatCurrency(analytics.weightedPipelineValue)}
-            </p>
-            <span className="text-[10px] text-slate-500">Value × Probability</span>
-          </div>
-
-          <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
-            <div className="flex items-center justify-between text-slate-400 mb-1">
-              <span className="text-[11px] font-semibold">Closed Won Revenue</span>
-              <Award className="w-3.5 h-3.5 text-emerald-400" />
-            </div>
-            <p className="text-lg font-bold font-mono text-emerald-400">
-              {formatCurrency(analytics.closedWonValue)}
-            </p>
-            <span className="text-[10px] text-slate-500">{analytics.wonCount} won deals</span>
-          </div>
-
-          <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
-            <div className="flex items-center justify-between text-slate-400 mb-1">
-              <span className="text-[11px] font-semibold">Overall Win Rate</span>
-              <DollarSign className="w-3.5 h-3.5 text-indigo-400" />
-            </div>
-            <p className="text-lg font-bold font-mono text-indigo-400">
-              {analytics.winRate}%
-            </p>
-            <span className="text-[10px] text-slate-500">Avg deal: {formatCurrency(analytics.avgDealSize)}</span>
-          </div>
+          <p className="text-lg font-bold font-mono text-brand-400">
+            {formatCurrency(analytics?.totalPipelineValue ?? 0)}
+          </p>
+          <span className="text-[10px] text-slate-500">{analytics?.activeCount ?? 0} active deals</span>
         </div>
-      )}
+
+        <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+          <div className="flex items-center justify-between text-slate-400 mb-1">
+            <span className="text-[11px] font-semibold">Weighted Pipeline Forecast</span>
+            <Target className="w-3.5 h-3.5 text-cyan-400" />
+          </div>
+          <p className="text-lg font-bold font-mono text-cyan-400">
+            {formatCurrency(analytics?.weightedPipelineValue ?? 0)}
+          </p>
+          <span className="text-[10px] text-slate-500">Value × Probability</span>
+        </div>
+
+        <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+          <div className="flex items-center justify-between text-slate-400 mb-1">
+            <span className="text-[11px] font-semibold">Closed Won Revenue</span>
+            <Award className="w-3.5 h-3.5 text-emerald-400" />
+          </div>
+          <p className="text-lg font-bold font-mono text-emerald-400">
+            {formatCurrency(analytics?.closedWonValue ?? 0)}
+          </p>
+          <span className="text-[10px] text-slate-500">{analytics?.wonCount ?? 0} won deals</span>
+        </div>
+
+        <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+          <div className="flex items-center justify-between text-slate-400 mb-1">
+            <span className="text-[11px] font-semibold">Overall Win Rate</span>
+            <DollarSign className="w-3.5 h-3.5 text-indigo-400" />
+          </div>
+          <p className="text-lg font-bold font-mono text-indigo-400">
+            {analytics?.winRate ?? 0}%
+          </p>
+          <span className="text-[10px] text-slate-500">Avg deal: {formatCurrency(analytics?.avgDealSize ?? 0)}</span>
+        </div>
+      </div>
 
       {/* Kanban Board Container */}
       <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-4 shadow-sm min-h-[500px]">

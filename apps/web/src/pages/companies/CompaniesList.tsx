@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Building2, Search, Plus, ExternalLink, Globe, MapPin, Users, Kanban } from 'lucide-react';
+import { Building2, Search, Plus, ExternalLink, Globe, MapPin, Users, Kanban, Trash2, Loader2, AlertTriangle } from 'lucide-react';
 import { api } from '../../lib/api';
 import { Badge } from '../../components/common/Badge';
 import { Modal } from '../../components/common/Modal';
 import { useToast } from '../../stores/toast';
+import { useAuth } from '../../stores/auth';
 
 export const CompaniesList: React.FC = () => {
+  const { isAdmin } = useAuth();
   const [companies, setCompanies] = useState<any[]>([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [deletingCompany, setDeletingCompany] = useState<any | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [newCompany, setNewCompany] = useState({
     name: '',
     website: '',
@@ -54,6 +58,21 @@ export const CompaniesList: React.FC = () => {
       fetchCompanies();
     } catch (err: any) {
       error(err.response?.data?.error?.message || 'Failed to create company');
+    }
+  };
+
+  const handleDeleteCompany = async () => {
+    if (!deletingCompany) return;
+    setIsDeleting(true);
+    try {
+      await api.delete(`/companies/${deletingCompany.id}`);
+      success('Company deleted successfully');
+      setDeletingCompany(null);
+      fetchCompanies();
+    } catch (err: any) {
+      error(err.response?.data?.error?.message || 'Failed to delete company');
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -112,7 +131,22 @@ export const CompaniesList: React.FC = () => {
                   <h3 className="font-semibold text-sm text-slate-100 group-hover:text-brand-400 transition-colors line-clamp-1">
                     {comp.name}
                   </h3>
-                  <ExternalLink className="w-3.5 h-3.5 text-slate-600 group-hover:text-slate-300 shrink-0" />
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    {isAdmin && (
+                      <button
+                        type="button"
+                        title="Delete Company (Admin Only)"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setDeletingCompany(comp);
+                        }}
+                        className="p-1 rounded text-slate-500 hover:text-rose-400 hover:bg-rose-950/40 transition-colors opacity-0 group-hover:opacity-100"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+                    <ExternalLink className="w-3.5 h-3.5 text-slate-600 group-hover:text-slate-300 shrink-0" />
+                  </div>
                 </div>
 
                 <div className="flex items-center gap-2 mt-2">
@@ -145,6 +179,58 @@ export const CompaniesList: React.FC = () => {
           ))
         )}
       </div>
+
+      {/* Delete Company Confirmation Modal */}
+      {deletingCompany && (
+        <Modal
+          isOpen={!!deletingCompany}
+          onClose={() => !isDeleting && setDeletingCompany(null)}
+          title="Delete Company"
+          subtitle="Admin action confirmation"
+          maxWidth="sm"
+        >
+          <div className="space-y-4 text-xs">
+            <div className="p-3.5 rounded-xl bg-rose-950/30 border border-rose-800/50 flex items-start gap-3">
+              <AlertTriangle className="w-5 h-5 text-rose-400 shrink-0 mt-0.5" />
+              <div className="space-y-1">
+                <p className="font-semibold text-rose-200">Are you sure you want to delete this company?</p>
+                <p className="text-rose-300/90 leading-relaxed">
+                  This will safely delete <span className="font-bold text-slate-100">{deletingCompany.name}</span> from the CRM. Related contacts and deals will be preserved and unlinked safely.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-end gap-2 pt-2">
+              <button
+                type="button"
+                disabled={isDeleting}
+                onClick={() => setDeletingCompany(null)}
+                className="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium transition-colors disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleDeleteCompany}
+                disabled={isDeleting}
+                className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-semibold transition-colors disabled:opacity-50"
+              >
+                {isDeleting ? (
+                  <>
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                    <span>Deleting...</span>
+                  </>
+                ) : (
+                  <>
+                    <Trash2 className="w-3.5 h-3.5" />
+                    <span>Delete Company</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </Modal>
+      )}
 
       {/* Add Company Modal */}
       <Modal
