@@ -1,0 +1,156 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "7BLOCKS CRM API",
+    "version": "1.0.0",
+    "description": "Production REST API for 7BLOCKS CRM platform: client relationship engine, sales pipeline, call tracking, and Excel migration."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000/api",
+      "description": "Local Development Server"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "summary": "Authenticate user",
+        "tags": ["Auth"],
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": { "type": "string", "example": "admin@7blocks.com" },
+                  "password": { "type": "string", "example": "7Blocks@2026!" }
+                },
+                "required": ["email", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Authenticated successfully with access & refresh tokens" },
+          "401": { "description": "Invalid credentials" }
+        }
+      }
+    },
+    "/auth/me": {
+      "get": {
+        "summary": "Get authenticated user profile",
+        "tags": ["Auth"],
+        "responses": {
+          "200": { "description": "User profile" }
+        }
+      }
+    },
+    "/contacts": {
+      "get": {
+        "summary": "List contacts with pagination and advanced filtering",
+        "tags": ["Contacts"],
+        "parameters": [
+          { "name": "page", "in": "query", "schema": { "type": "integer", "default": 1 } },
+          { "name": "limit", "in": "query", "schema": { "type": "integer", "default": 25 } },
+          { "name": "search", "in": "query", "schema": { "type": "string" } },
+          { "name": "leadStatus", "in": "query", "schema": { "type": "string" } },
+          { "name": "ownerId", "in": "query", "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Paginated contacts list" }
+        }
+      },
+      "post": {
+        "summary": "Create a new contact",
+        "tags": ["Contacts"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fullName": { "type": "string", "example": "Kunal Sharma" },
+                  "email": { "type": "string", "example": "kunal@gymnacity.com" },
+                  "phone": { "type": "string", "example": "+918799051473" },
+                  "companyId": { "type": "string" },
+                  "leadStatus": { "type": "string", "example": "NEW" }
+                },
+                "required": ["fullName"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Contact created successfully" }
+        }
+      }
+    },
+    "/activities/call": {
+      "post": {
+        "summary": "Log a call interaction with outcome and automated follow-up task",
+        "tags": ["Activities"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "contactId": { "type": "string" },
+                  "callType": { "type": "string", "enum": ["COLD_CALL", "WARM_CALL"] },
+                  "outcome": { "type": "string", "example": "CALLBACK_REQUESTED" },
+                  "durationSeconds": { "type": "integer", "example": 180 },
+                  "notes": { "type": "string", "example": "Boss requested callback at 5:30 PM" },
+                  "followUpRequired": { "type": "boolean", "example": true },
+                  "followUpDate": { "type": "string", "format": "date-time" }
+                },
+                "required": ["contactId", "callType", "outcome"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Call logged and follow-up task scheduled" }
+        }
+      }
+    },
+    "/deals/kanban": {
+      "get": {
+        "summary": "Get deal pipeline Kanban board stages and cards",
+        "tags": ["Deals"],
+        "responses": {
+          "200": { "description": "Pipeline columns with deal cards and stage totals" }
+        }
+      }
+    },
+    "/dashboard": {
+      "get": {
+        "summary": "Get real-time operational dashboard metrics",
+        "tags": ["Dashboard"],
+        "parameters": [
+          { "name": "timeframe", "in": "query", "schema": { "type": "string", "enum": ["today", "7days", "30days", "90days", "all"] } }
+        ],
+        "responses": {
+          "200": { "description": "KPI summary, sales funnel, and team performance" }
+        }
+      }
+    }
+  }
+}

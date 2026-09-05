@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: sevenblocks-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres_password
+      POSTGRES_DB: sevenblocks_crm
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d sevenblocks_crm"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    container_name: sevenblocks-api
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PORT: 5000
+      NODE_ENV: production
+      DATABASE_URL: postgresql://postgres:postgres_password@postgres:5432/sevenblocks_crm?schema=public
+      JWT_SECRET: sevenblocks_production_jwt_secret_key_2026_x99!secure
+      JWT_REFRESH_SECRET: sevenblocks_production_jwt_refresh_secret_key_2026_x99!secure
+      FRONTEND_URL: http://localhost:3000
+      DEFAULT_CURRENCY: INR
+      TIMEZONE: Asia/Kolkata
+    ports:
+      - "5000:5000"
+
+  web:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.web
+    container_name: sevenblocks-web
+    restart: always
+    depends_on:
+      - api
+    ports:
+      - "3000:80"
+
+volumes:
+  pgdata:
+    driver: local

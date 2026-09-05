@@ -1,0 +1,35 @@
+# Production Dockerfile for 7BLOCKS CRM API
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+# Copy root and package descriptors
+COPY package*.json ./
+COPY prisma ./prisma/
+COPY packages/shared ./packages/shared/
+COPY apps/api ./apps/api/
+
+# Install dependencies and build shared + api
+RUN npm install
+RUN npm run build --workspace=@7blocks/shared
+RUN npx prisma generate
+RUN npm run build --workspace=@7blocks/api
+
+# Runner image
+FROM node:20-alpine AS runner
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+ENV PORT=5000
+
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/packages/shared/dist ./packages/shared/dist
+COPY --from=builder /app/apps/api/dist ./apps/api/dist
+COPY --from=builder /app/apps/api/src/docs ./apps/api/dist/docs
+
+EXPOSE 5000
+
+CMD ["node", "apps/api/dist/server.js"]

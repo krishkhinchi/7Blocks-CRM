@@ -1,0 +1,26 @@
+{
+  "name": "7blocks-crm",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n \"API,WEB\" -c \"cyan,magenta\" \"npm run dev --workspace=@7blocks/api\" \"npm run dev --workspace=@7blocks/web\"",
+    "dev:api": "npm run dev --workspace=@7blocks/api",
+    "dev:web": "npm run dev --workspace=@7blocks/web",
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspace=@7blocks/api",
+    "db:generate": "npx prisma generate",
+    "db:push": "npx prisma db push",
+    "db:seed": "npx tsx prisma/seed.ts",
+    "db:studio": "npx prisma studio"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "prisma": "^6.4.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
+  }
+}
