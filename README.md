@@ -1,6 +1,6 @@
 # 🏢 7BLOCKS CRM — Production Platform
 
-A complete, enterprise-grade, full-stack CRM engineered specifically for **7BLOCKS** to replace Excel-based client and lead management workflows (`7Blocks Core.xlsx`).
+A complete, enterprise-grade, full-stack CRM engineered specifically for **7BLOCKS** to replace Excel-based client and lead management workflows.
 
 ---
 
@@ -10,7 +10,7 @@ A complete, enterprise-grade, full-stack CRM engineered specifically for **7BLOC
 
 * **Dual-Track Outreach Engine**: Native support for 7BLOCKS' dual-track prospecting workflow:
   * **Email Outreach**: Tracks email status, website audit state (`NO_WEBSITE`, `UPDATE_WEBSITE`, `CUSTOM_BUILD`), and response tracking.
-  * **Cold Calling Pipeline**: Dedicated Call Logger modal capturing outcomes (`CONNECTED`, `VOICEMAIL`, `CALL_BACK`, `INTERESTED`, `NOT_INTERESTED`, `BLOCKED`, `DEMO_REQUESTED`, etc.), call duration, notes, and auto-scheduling callback tasks.
+  * **Cold Calling Pipeline**: Dedicated Call Logger modal capturing outcomes (`CONNECTED`, `VOICEMAIL`, `CALL_BACK`, `INTERESTED`, `NOT_INTERESTED`, `DEMO_REQUESTED`, etc.), call duration, notes, and auto-scheduling callback tasks.
 * **Modern Tech Stack**:
   * **Frontend**: React 18 + Vite + TypeScript + Tailwind CSS + Lucide Icons + `@dnd-kit` (Kanban).
   * **Backend**: Node.js + Express + TypeScript + Prisma ORM + Zod Validation.
@@ -97,116 +97,6 @@ CRM/
 ├── package.json
 └── README.md
 ```
-
----
-
-## 🔑 Default Credentials (Seeded)
-
-The system is seeded with 4 pre-configured users covering all RBAC tiers.
-
-| Role | Email | Password | Permissions |
-| :--- | :--- | :--- | :--- |
-| **ADMIN** | `admin@7blocks.com` | `7Blocks@2026!` | Full administrative access, user creation, role editing, full audit logs |
-| **MANAGER** | `manager@7blocks.com` | `7Blocks@2026!` | Team oversight, all contacts & deals, reports, pipeline analytics |
-| **SALES_REP** | `aarav@7blocks.com` | `7Blocks@2026!` | Assigned leads & deals, call logging, task creation |
-| **SALES_REP** | `priya@7blocks.com` | `7Blocks@2026!` | Assigned leads & deals, call logging, task creation |
-
----
-
-## ⚡ Getting Started (Local Development)
-
-### Prerequisites
-* **Node.js**: v18+ (tested on Node v20 & v24)
-* **PostgreSQL**: v14+ running on port 5432
-* **npm**: v9+
-
-### 1. Environment Configuration
-Copy the example environment configuration:
-```bash
-cp .env.example .env
-```
-Ensure your `.env` contains your PostgreSQL connection string:
-```env
-PORT=5000
-DATABASE_URL="postgresql://postgres:your_password@localhost:5432/sevenblocks_crm?schema=public"
-JWT_SECRET="sevenblocks_production_jwt_secret_key_2026_x99!secure"
-JWT_REFRESH_SECRET="sevenblocks_production_jwt_refresh_secret_key_2026_x99!secure"
-FRONTEND_URL="http://localhost:3000"
-DEFAULT_CURRENCY="INR"
-TIMEZONE="Asia/Kolkata"
-```
-
-### 2. Install Dependencies
-```bash
-npm install
-```
-
-### 3. Build Shared Enums & Types
-```bash
-npm run build --workspace=@7blocks/shared
-```
-
-### 4. Database Migration & Seed
-Run Prisma database sync and the data seeder:
-```bash
-# Push schema changes to PostgreSQL
-npx prisma db push
-
-# Populate initial users, clients, deals, and 7Blocks sample data
-npx ts-node prisma/seed.ts
-```
-
-### 5. Start Development Servers
-You can run both API and Frontend in parallel:
-```bash
-# Terminal 1: Backend API (runs on port 5000)
-npm run dev --workspace=@7blocks/api
-
-# Terminal 2: Web Client (runs on port 3000)
-npm run dev --workspace=@7blocks/web
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
----
-
-## 🐳 Docker Production Deployment
-
-To run the entire system including PostgreSQL, the API, and the Web UI in isolated containers:
-
-```bash
-docker-compose up --build -d
-```
-
-* **Web UI**: [http://localhost:3000](http://localhost:3000)
-* **API Endpoints**: [http://localhost:5000/api](http://localhost:5000/api)
-* **Interactive API Documentation (Swagger)**: [http://localhost:5000/api/docs](http://localhost:5000/api/docs)
-* **PostgreSQL**: `localhost:5432`
-
----
-
-## 🧪 Automated Testing & QA
-
-Automated tests cover authentication flows, JWT token issuance, contact validation, role guard rejection, and deal pipeline integrity:
-
-```bash
-npm run test --workspace=@7blocks/api
-```
-
-**Test Coverage Results:**
-* `PASS` `apps/api/src/tests/api.test.ts`
-  * ✅ POST `/api/auth/login` (Rejects invalid credentials)
-  * ✅ POST `/api/auth/login` (Successfully authenticates ADMIN)
-  * ✅ GET `/api/auth/me` (Returns authenticated user profile)
-  * ✅ GET `/api/contacts` (Lists paginated contacts)
-  * ✅ POST `/api/contacts` (Creates new contact with validation)
-  * ✅ GET `/api/deals/pipeline/summary` (Aggregates pipeline value)
-  * ✅ POST `/api/activities/call` (Logs call & auto-schedules follow-up)
-  * ✅ GET `/api/dashboard/summary` (Computes real SQL metrics)
-  * ✅ GET `/api/search` (Performs global indexed search)
-  * ✅ Role Guards (Denies unauthorized actions for SALES_REP)
-
----
 
 ## 📊 7BLOCKS Core Excel Import Guide
 

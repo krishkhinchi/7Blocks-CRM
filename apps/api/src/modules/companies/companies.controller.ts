@@ -51,6 +51,18 @@ export class CompaniesController {
     }
   }
 
+  static async deleteAll(req: Request, res: Response, next: NextFunction) {
+    try {
+      const result = await CompaniesService.deleteAll(req.user!.id);
+      res.status(200).json({
+        success: true,
+        data: result
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   static async delete(req: Request, res: Response, next: NextFunction) {
     try {
       const result = await CompaniesService.delete(req.params.id, req.user!.id);
