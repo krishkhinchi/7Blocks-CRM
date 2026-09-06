@@ -1,5 +1,7 @@
 {
   "version": 2,
+  "buildCommand": "npm run build --workspace=@7blocks/web",
+  "outputDirectory": "apps/web/dist",
   "rewrites": [
     {
       "source": "/api/(.*)",

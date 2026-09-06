@@ -11,6 +11,7 @@ router.get('/', CompaniesController.list);
 router.get('/:id', CompaniesController.getById);
 router.post('/', CompaniesController.create);
 router.patch('/:id', CompaniesController.update);
+router.delete('/', authorize(UserRole.ADMIN), CompaniesController.deleteAll);
 router.delete('/:id', authorize(UserRole.ADMIN), CompaniesController.delete);
 
 export default router;

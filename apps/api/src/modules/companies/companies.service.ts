@@ -150,6 +150,25 @@ export class CompaniesService {
     return updated;
   }
 
+  static async deleteAll(userId: string) {
+    await prisma.company.updateMany({
+      where: { deletedAt: null },
+      data: { deletedAt: new Date() }
+    });
+
+    await prisma.auditLog.create({
+      data: {
+        userId,
+        action: AuditAction.COMPANY_DELETED,
+        entityType: 'Company',
+        entityId: 'ALL',
+        newValues: { description: 'All companies deleted' }
+      }
+    });
+
+    return { message: 'All companies deleted successfully' };
+  }
+
   static async delete(id: string, userId: string) {
     await prisma.company.update({
       where: { id },
