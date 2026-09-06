@@ -88,7 +88,7 @@ export const PipelinePage: React.FC = () => {
           <select
             value={ownerId}
             onChange={e => setOwnerId(e.target.value)}
-            className="bg-slate-900 border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-200 focus:border-brand-500 focus:outline-none"
+            className="bg-slate-900 border border-slate-800/60 rounded-lg px-3 py-1.5 text-xs text-slate-200 focus:border-slate-600 focus:outline-none shadow-sm"
           >
             <option value="">All Sales Reps</option>
             {users.map(u => (
@@ -98,7 +98,7 @@ export const PipelinePage: React.FC = () => {
 
           <button
             onClick={() => setShowCreateDeal(true)}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-500 text-xs font-semibold text-white shadow-sm transition-colors"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white hover:bg-slate-200 text-xs font-semibold text-slate-900 shadow-sm transition-colors"
           >
             <Plus className="w-4 h-4" />
             <span>New Opportunity</span>
@@ -108,55 +108,63 @@ export const PipelinePage: React.FC = () => {
 
       {/* Analytics Metric Bar — always visible; shows 0 when no DB data */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
-          <div className="flex items-center justify-between text-slate-400 mb-1">
-            <span className="text-[11px] font-semibold">Total Active Pipeline</span>
-            <TrendingUp className="w-3.5 h-3.5 text-amber-400" />
+        <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800/60 shadow-sm">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-xs font-semibold text-slate-400">Total Active Pipeline</span>
+            <div className="w-8 h-8 rounded-lg bg-accent-orange/10 flex items-center justify-center">
+              <TrendingUp className="w-4 h-4 text-accent-orange" />
+            </div>
           </div>
-          <p className="text-lg font-bold font-mono text-brand-400">
+          <p className="text-xl font-bold font-mono text-slate-100 tracking-tight">
             {formatCurrency(analytics?.totalPipelineValue ?? 0)}
           </p>
-          <span className="text-[10px] text-slate-500">{analytics?.activeCount ?? 0} active deals</span>
+          <span className="text-[11px] text-slate-500 mt-2 block font-medium">{analytics?.activeCount ?? 0} active deals</span>
         </div>
 
-        <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
-          <div className="flex items-center justify-between text-slate-400 mb-1">
-            <span className="text-[11px] font-semibold">Weighted Pipeline Forecast</span>
-            <Target className="w-3.5 h-3.5 text-cyan-400" />
+        <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800/60 shadow-sm">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-xs font-semibold text-slate-400">Weighted Forecast</span>
+            <div className="w-8 h-8 rounded-lg bg-accent-cyan/10 flex items-center justify-center">
+              <Target className="w-4 h-4 text-accent-cyan" />
+            </div>
           </div>
-          <p className="text-lg font-bold font-mono text-cyan-400">
+          <p className="text-xl font-bold font-mono text-slate-100 tracking-tight">
             {formatCurrency(analytics?.weightedPipelineValue ?? 0)}
           </p>
-          <span className="text-[10px] text-slate-500">Value × Probability</span>
+          <span className="text-[11px] text-slate-500 mt-2 block font-medium">Value × Probability</span>
         </div>
 
-        <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
-          <div className="flex items-center justify-between text-slate-400 mb-1">
-            <span className="text-[11px] font-semibold">Closed Won Revenue</span>
-            <Award className="w-3.5 h-3.5 text-emerald-400" />
+        <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800/60 shadow-sm">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-xs font-semibold text-slate-400">Closed Won Revenue</span>
+            <div className="w-8 h-8 rounded-lg bg-accent-emerald/10 flex items-center justify-center">
+              <Award className="w-4 h-4 text-accent-emerald" />
+            </div>
           </div>
-          <p className="text-lg font-bold font-mono text-emerald-400">
+          <p className="text-xl font-bold font-mono text-slate-100 tracking-tight">
             {formatCurrency(analytics?.closedWonValue ?? 0)}
           </p>
-          <span className="text-[10px] text-slate-500">{analytics?.wonCount ?? 0} won deals</span>
+          <span className="text-[11px] text-slate-500 mt-2 block font-medium">{analytics?.wonCount ?? 0} won deals</span>
         </div>
 
-        <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
-          <div className="flex items-center justify-between text-slate-400 mb-1">
-            <span className="text-[11px] font-semibold">Overall Win Rate</span>
-            <DollarSign className="w-3.5 h-3.5 text-indigo-400" />
+        <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800/60 shadow-sm">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-xs font-semibold text-slate-400">Overall Win Rate</span>
+            <div className="w-8 h-8 rounded-lg bg-accent-purple/10 flex items-center justify-center">
+              <DollarSign className="w-4 h-4 text-accent-purple" />
+            </div>
           </div>
-          <p className="text-lg font-bold font-mono text-indigo-400">
+          <p className="text-xl font-bold font-mono text-slate-100 tracking-tight">
             {analytics?.winRate ?? 0}%
           </p>
-          <span className="text-[10px] text-slate-500">Avg deal: {formatCurrency(analytics?.avgDealSize ?? 0)}</span>
+          <span className="text-[11px] text-slate-500 mt-2 block font-medium truncate">Avg deal: {formatCurrency(analytics?.avgDealSize ?? 0)}</span>
         </div>
       </div>
 
       {/* Kanban Board Container */}
-      <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-4 shadow-sm min-h-[500px]">
+      <div className="rounded-2xl border border-slate-800/40 bg-slate-950/40 p-4 shadow-sm min-h-[500px]">
         {loading ? (
-          <div className="flex items-center justify-center h-64 text-slate-500 text-xs">
+          <div className="flex items-center justify-center h-64 text-slate-500 text-[13px]">
             Loading pipeline deals...
           </div>
         ) : (

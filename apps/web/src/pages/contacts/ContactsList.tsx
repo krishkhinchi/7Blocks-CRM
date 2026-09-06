@@ -167,21 +167,21 @@ export const ContactsList: React.FC = () => {
         <div className="flex items-center gap-2.5">
           <button
             onClick={() => handleExport('csv')}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-800 hover:border-slate-700 bg-slate-900 text-xs font-semibold text-slate-300 hover:text-white transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-800/60 hover:border-slate-700 bg-slate-900 text-[13px] font-semibold text-slate-400 hover:text-white transition-colors"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Export CSV</span>
           </button>
           <button
             onClick={() => handleExport('xlsx')}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-800 hover:border-slate-700 bg-slate-900 text-xs font-semibold text-slate-300 hover:text-white transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-800/60 hover:border-slate-700 bg-slate-900 text-[13px] font-semibold text-slate-400 hover:text-white transition-colors"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Export Excel</span>
           </button>
           <button
             onClick={() => setShowCreateModal(true)}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-500 text-xs font-semibold text-white shadow-sm transition-colors"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white hover:bg-slate-200 text-[13px] font-semibold text-slate-900 shadow-sm transition-colors"
           >
             <Plus className="w-4 h-4" />
             <span>Add Contact</span>
@@ -190,11 +190,11 @@ export const ContactsList: React.FC = () => {
       </div>
 
       {/* Filter Toolbar */}
-      <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-3 shadow-sm">
+      <div className="p-4 rounded-xl bg-slate-900 border border-slate-800/60 space-y-4 shadow-sm">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-3 text-xs">
           {/* Search Input */}
           <div className="md:col-span-2 relative">
-            <Search className="w-3.5 h-3.5 text-slate-500 absolute left-3 top-2.5" />
+            <Search className="w-4 h-4 text-slate-500 absolute left-3 top-2.5" />
             <input
               type="text"
               placeholder="Search by name, email, phone, gym... (e.g. Kunal, Powai)"
@@ -203,7 +203,7 @@ export const ContactsList: React.FC = () => {
                 setSearch(e.target.value);
                 setPagination(prev => ({ ...prev, page: 1 }));
               }}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg pl-9 pr-3 py-2 text-slate-100 placeholder:text-slate-500 focus:border-brand-500 focus:outline-none"
+              className="w-full bg-slate-950/40 border border-slate-800/60 rounded-lg pl-9 pr-3 py-2.5 text-[13px] text-slate-100 placeholder:text-slate-500 focus:border-slate-600 focus:outline-none shadow-sm"
             />
           </div>
 
@@ -215,7 +215,7 @@ export const ContactsList: React.FC = () => {
                 setLeadStatus(e.target.value);
                 setPagination(prev => ({ ...prev, page: 1 }));
               }}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-200 focus:border-brand-500 focus:outline-none"
+              className="w-full bg-slate-950/40 border border-slate-800/60 rounded-lg p-2.5 text-[13px] text-slate-200 focus:border-slate-600 focus:outline-none shadow-sm"
             >
               <option value="">All Statuses</option>
               <option value="NEW">New</option>
@@ -240,7 +240,7 @@ export const ContactsList: React.FC = () => {
                 setServiceInterest(e.target.value);
                 setPagination(prev => ({ ...prev, page: 1 }));
               }}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-200 focus:border-brand-500 focus:outline-none"
+              className="w-full bg-slate-950/40 border border-slate-800/60 rounded-lg p-2.5 text-[13px] text-slate-200 focus:border-slate-600 focus:outline-none shadow-sm"
             >
               <option value="">All Services</option>
               <option value="WEBSITE_NEW">Website (New)</option>
@@ -261,7 +261,7 @@ export const ContactsList: React.FC = () => {
                 setOwnerId(e.target.value);
                 setPagination(prev => ({ ...prev, page: 1 }));
               }}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-200 focus:border-brand-500 focus:outline-none"
+              className="w-full bg-slate-950/40 border border-slate-800/60 rounded-lg p-2.5 text-[13px] text-slate-200 focus:border-slate-600 focus:outline-none shadow-sm"
             >
               <option value="">All Reps</option>
               {users.map(u => (
@@ -309,28 +309,28 @@ export const ContactsList: React.FC = () => {
       </div>
 
       {/* Contacts Table */}
-      <div className="rounded-xl border border-slate-800 bg-slate-900/60 overflow-hidden shadow-sm">
+      <div className="rounded-xl border border-slate-800/60 bg-slate-900 overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
-          <table className="w-full text-xs text-left">
-            <thead className="text-[11px] uppercase tracking-wider text-slate-400 bg-slate-950/60 border-b border-slate-800">
+          <table className="w-full text-left">
+            <thead className="text-[11px] uppercase tracking-wider text-slate-400 border-b border-slate-800/60">
               <tr>
-                <th className="py-3 px-4 w-8">
+                <th className="py-4 px-4 w-8">
                   <input
                     type="checkbox"
                     checked={Array.isArray(contacts) && contacts.length > 0 && selectedIds.length === contacts.length}
                     onChange={handleSelectAll}
-                    className="rounded bg-slate-900 border-slate-700 text-brand-600 focus:ring-brand-500"
+                    className="rounded bg-slate-900 border-slate-700 text-accent-blue focus:ring-accent-blue"
                   />
                 </th>
-                <th className="py-3 px-4">Contact & Company</th>
-                <th className="py-3 px-4">Direct Contact</th>
-                <th className="py-3 px-4">Status & Score</th>
-                <th className="py-3 px-4">Owner</th>
-                <th className="py-3 px-4">Next Action / Due</th>
-                <th className="py-3 px-4 text-right">Actions</th>
+                <th className="py-4 px-4 font-medium">Contact & Company</th>
+                <th className="py-4 px-4 font-medium">Direct Contact</th>
+                <th className="py-4 px-4 font-medium">Status & Score</th>
+                <th className="py-4 px-4 font-medium">Owner</th>
+                <th className="py-4 px-4 font-medium">Next Action / Due</th>
+                <th className="py-4 px-4 text-right font-medium">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-slate-800/40 text-[13px]">
               {loading && (!Array.isArray(contacts) || contacts.length === 0) ? (
                 <tr>
                   <td colSpan={7} className="py-12 text-center text-slate-500">
@@ -356,8 +356,8 @@ export const ContactsList: React.FC = () => {
                   return (
                     <tr
                       key={c.id}
-                      className={`hover:bg-slate-800/30 transition-colors ${
-                        isSelected ? 'bg-brand-950/15' : ''
+                      className={`hover:bg-slate-800/40 transition-colors group ${
+                        isSelected ? 'bg-slate-800/60' : ''
                       }`}
                     >
                       {/* Checkbox */}
@@ -366,7 +366,7 @@ export const ContactsList: React.FC = () => {
                           type="checkbox"
                           checked={isSelected}
                           onChange={() => handleSelectRow(c.id)}
-                          className="rounded bg-slate-900 border-slate-700 text-brand-600 focus:ring-brand-500"
+                          className="rounded bg-slate-900 border-slate-700 text-accent-blue focus:ring-accent-blue"
                         />
                       </td>
 
@@ -374,7 +374,7 @@ export const ContactsList: React.FC = () => {
                       <td className="py-3 px-4">
                         <button
                           onClick={() => navigate(`/contacts/${c.id}`)}
-                          className="text-left font-semibold text-slate-100 hover:text-brand-400 transition-colors block text-xs"
+                          className="text-left font-semibold text-slate-200 group-hover:text-white transition-colors block text-[13px]"
                         >
                           {c.fullName}
                         </button>
@@ -407,9 +407,9 @@ export const ContactsList: React.FC = () => {
                       <td className="py-3 px-4">
                         <div className="flex items-center gap-2">
                           <StatusBadge status={c.leadStatus} />
-                          <span className={`px-1.5 py-0.5 rounded text-[10px] font-bold font-mono ${
-                            c.leadScore >= 70 ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30' :
-                            c.leadScore >= 40 ? 'bg-amber-500/15 text-amber-400 border border-amber-500/30' :
+                          <span className={`px-1.5 py-0.5 rounded-md text-[10px] font-bold font-mono ${
+                            c.leadScore >= 70 ? 'bg-accent-emerald/10 text-accent-emerald border border-accent-emerald/20' :
+                            c.leadScore >= 40 ? 'bg-accent-yellow/10 text-accent-yellow border border-accent-yellow/20' :
                             'bg-slate-800 text-slate-400'
                           }`}>
                             {c.leadScore} pts
@@ -419,11 +419,11 @@ export const ContactsList: React.FC = () => {
 
                       {/* Owner */}
                       <td className="py-3 px-4">
-                        <div className="flex items-center gap-1.5 text-[11px] text-slate-300">
+                        <div className="flex items-center gap-2 text-[11px] text-slate-300">
                           {c.owner?.avatar ? (
-                            <img src={c.owner.avatar} alt={c.owner.name} className="w-5 h-5 rounded-full object-cover" />
+                            <img src={c.owner.avatar} alt={c.owner.name} className="w-5 h-5 rounded-full object-cover border border-slate-700/50" />
                           ) : (
-                            <div className="w-5 h-5 rounded-full bg-slate-700 flex items-center justify-center text-[9px]">
+                            <div className="w-5 h-5 rounded-full bg-slate-800 border border-slate-700/50 flex items-center justify-center text-[9px] text-slate-300">
                               {c.owner?.name?.slice(0, 2).toUpperCase() || '7B'}
                             </div>
                           )}
@@ -434,7 +434,7 @@ export const ContactsList: React.FC = () => {
                       {/* Next Action / Due */}
                       <td className="py-3 px-4 text-[11px]">
                         {c.tasks && c.tasks.length > 0 ? (
-                          <div className="flex items-center gap-1 text-amber-400 font-medium truncate max-w-[180px]">
+                          <div className="flex items-center gap-1.5 text-accent-yellow font-medium truncate max-w-[180px]">
                             <Calendar className="w-3 h-3 shrink-0" />
                             <span className="truncate">{c.tasks[0].title}</span>
                           </div>
@@ -449,27 +449,27 @@ export const ContactsList: React.FC = () => {
 
                       {/* Quick Actions */}
                       <td className="py-3 px-4 text-right">
-                        <div className="flex items-center justify-end gap-1.5">
+                        <div className="flex items-center justify-end gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
                           <button
                             onClick={() => setLogCallContact(c)}
                             title="Log Call"
-                            className="p-1.5 rounded-lg border border-slate-800 bg-slate-950 text-indigo-400 hover:bg-indigo-950/40 hover:border-indigo-500/40 transition-colors"
+                            className="p-1.5 rounded-lg text-accent-purple hover:bg-slate-800/80 transition-colors"
                           >
-                            <Phone className="w-3.5 h-3.5" />
+                            <Phone className="w-4 h-4" />
                           </button>
                           <button
                             onClick={() => setSendEmailContact(c)}
                             title="Send Email"
-                            className="p-1.5 rounded-lg border border-slate-800 bg-slate-950 text-cyan-400 hover:bg-cyan-950/40 hover:border-cyan-500/40 transition-colors"
+                            className="p-1.5 rounded-lg text-accent-cyan hover:bg-slate-800/80 transition-colors"
                           >
-                            <Mail className="w-3.5 h-3.5" />
+                            <Mail className="w-4 h-4" />
                           </button>
                           <button
                             onClick={() => navigate(`/contacts/${c.id}`)}
                             title="View Contact Detail"
-                            className="p-1.5 rounded-lg border border-slate-800 bg-slate-950 text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/80 transition-colors"
                           >
-                            <ExternalLink className="w-3.5 h-3.5" />
+                            <ExternalLink className="w-4 h-4" />
                           </button>
                         </div>
                       </td>

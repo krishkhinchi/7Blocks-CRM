@@ -61,18 +61,18 @@ const DealCard: React.FC<{ deal: Deal; onClick?: () => void }> = ({ deal, onClic
       {...listeners}
       {...attributes}
       onClick={onClick}
-      className={`p-3.5 rounded-xl border border-slate-800 bg-slate-900/80 hover:border-slate-700 shadow-sm cursor-grab active:cursor-grabbing transition-shadow ${
-        isDragging ? 'opacity-50 ring-2 ring-brand-500 shadow-xl' : ''
+      className={`p-4 rounded-xl border border-slate-800/60 bg-slate-900 hover:bg-slate-900/90 shadow-sm cursor-grab active:cursor-grabbing transition-all hover:border-slate-700/80 hover:shadow-md ${
+        isDragging ? 'opacity-70 ring-2 ring-brand-500 shadow-2xl scale-[1.02]' : ''
       }`}
     >
-      <div className="flex items-start justify-between gap-2 mb-2">
-        <h4 className="font-semibold text-xs text-slate-100 line-clamp-2 leading-snug">
+      <div className="flex items-start justify-between gap-2 mb-3">
+        <h4 className="font-semibold text-[13px] text-slate-100 line-clamp-2 leading-snug">
           {deal.name}
         </h4>
       </div>
 
-      <div className="flex items-center justify-between gap-2 mb-3">
-        <span className="font-mono font-bold text-sm text-brand-400">
+      <div className="flex items-center justify-between gap-2 mb-4">
+        <span className="font-mono font-bold text-[15px] text-slate-100 tracking-tight">
           {formatCurrency(deal.value, deal.currency)}
         </span>
         <Badge variant={deal.probability >= 80 ? 'success' : deal.probability >= 50 ? 'info' : 'neutral'} size="sm">
@@ -80,22 +80,22 @@ const DealCard: React.FC<{ deal: Deal; onClick?: () => void }> = ({ deal, onClic
         </Badge>
       </div>
 
-      <div className="space-y-1 text-[11px] text-slate-400 border-t border-slate-800/80 pt-2">
+      <div className="space-y-1.5 text-[11px] text-slate-400 border-t border-slate-800/60 pt-3">
         {deal.company && (
-          <div className="flex items-center gap-1.5 truncate">
-            <Building2 className="w-3 h-3 text-slate-500 shrink-0" />
+          <div className="flex items-center gap-2 truncate">
+            <Building2 className="w-3.5 h-3.5 text-slate-500 shrink-0" />
             <span className="truncate text-slate-300">{deal.company.name}</span>
           </div>
         )}
         {deal.contact && (
-          <div className="flex items-center gap-1.5 truncate">
-            <User className="w-3 h-3 text-slate-500 shrink-0" />
+          <div className="flex items-center gap-2 truncate">
+            <User className="w-3.5 h-3.5 text-slate-500 shrink-0" />
             <span className="truncate">{deal.contact.fullName}</span>
           </div>
         )}
         {deal.expectedCloseDate && (
-          <div className="flex items-center gap-1.5 truncate">
-            <Calendar className="w-3 h-3 text-slate-500 shrink-0" />
+          <div className="flex items-center gap-2 truncate">
+            <Calendar className="w-3.5 h-3.5 text-slate-500 shrink-0" />
             <span>Close: {formatDate(deal.expectedCloseDate)}</span>
           </div>
         )}
@@ -103,8 +103,8 @@ const DealCard: React.FC<{ deal: Deal; onClick?: () => void }> = ({ deal, onClic
 
       {/* Next Task Indicator */}
       {deal.tasks && deal.tasks.length > 0 && (
-        <div className="mt-2.5 pt-2 border-t border-slate-800/50 flex items-center gap-1.5 text-[10px] text-amber-400">
-          <CheckSquare className="w-3 h-3 shrink-0" />
+        <div className="mt-3 pt-3 border-t border-slate-800/60 flex items-center gap-2 text-[11px] text-accent-yellow font-medium">
+          <CheckSquare className="w-3.5 h-3.5 shrink-0" />
           <span className="truncate">{deal.tasks[0].title}</span>
         </div>
       )}
@@ -127,39 +127,39 @@ const DroppableColumn: React.FC<{
   const getStageAccent = (stage: string) => {
     switch (stage) {
       case 'PROSPECTING':
-        return 'border-t-slate-500';
+        return 'border-t-slate-600';
       case 'QUALIFICATION':
-        return 'border-t-indigo-500';
+        return 'border-t-accent-blue';
       case 'PROPOSAL':
-        return 'border-t-cyan-500';
+        return 'border-t-accent-cyan';
       case 'NEGOTIATION':
-        return 'border-t-amber-500';
+        return 'border-t-accent-orange';
       case 'CLOSED_WON':
-        return 'border-t-emerald-500';
+        return 'border-t-accent-emerald';
       case 'CLOSED_LOST':
-        return 'border-t-rose-500';
+        return 'border-t-accent-rose';
       default:
-        return 'border-t-slate-500';
+        return 'border-t-slate-600';
     }
   };
 
   return (
     <div
       ref={setNodeRef}
-      className={`w-72 shrink-0 flex flex-col rounded-xl border border-slate-800/80 bg-slate-950/40 border-t-2 ${getStageAccent(
+      className={`w-72 shrink-0 flex flex-col rounded-xl border border-slate-800/50 bg-[#0a0a0a] border-t-[3px] ${getStageAccent(
         column.stage
-      )} transition-colors ${isOver ? 'bg-slate-900/60 ring-1 ring-brand-500/50' : ''}`}
+      )} transition-colors ${isOver ? 'bg-slate-900 ring-1 ring-brand-500/50' : ''}`}
     >
       {/* Column Header */}
-      <div className="p-3 border-b border-slate-800/80 bg-slate-900/40">
+      <div className="p-3.5 border-b border-slate-800/50 bg-slate-900/40 rounded-t-xl">
         <div className="flex items-center justify-between">
-          <span className="font-semibold text-xs text-slate-200">{column.title}</span>
-          <span className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-400">
+          <span className="font-semibold text-[13px] text-slate-200">{column.title}</span>
+          <span className="px-2 py-0.5 rounded text-[11px] font-mono font-medium bg-slate-800/80 text-slate-300 border border-slate-700/50">
             {deals.length}
           </span>
         </div>
-        <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 mt-1">
-          <span>{formatCurrency(column.totalValue || 0)}</span>
+        <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 mt-2">
+          <span className="font-medium">{formatCurrency(column.totalValue || 0)}</span>
           <span className="text-[10px] text-slate-500">
             W: {formatCurrency(column.weightedValue || 0)}
           </span>

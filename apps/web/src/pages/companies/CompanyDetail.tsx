@@ -67,14 +67,14 @@ export const CompanyDetail: React.FC = () => {
       </div>
 
       {/* Header */}
-      <div className="p-6 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-sm space-y-4">
+      <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800/60 shadow-sm space-y-4">
         <div className="flex items-start justify-between">
           <div>
-            <h1 className="text-xl font-bold text-slate-100">{company.name}</h1>
-            <div className="flex items-center gap-3 text-xs text-slate-400 mt-1">
+            <h1 className="text-2xl font-bold text-slate-100 tracking-tight">{company.name}</h1>
+            <div className="flex items-center gap-3 text-[13px] text-slate-400 mt-2 font-medium">
               {company.city && (
-                <span className="flex items-center gap-1">
-                  <MapPin className="w-3.5 h-3.5 text-slate-500" />
+                <span className="flex items-center gap-1.5">
+                  <MapPin className="w-4 h-4 text-slate-500" />
                   {company.city}, {company.state || 'India'}
                 </span>
               )}
@@ -89,18 +89,18 @@ export const CompanyDetail: React.FC = () => {
                 href={company.website}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-950 text-cyan-400 hover:underline text-xs"
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-slate-800/60 bg-slate-950 text-accent-cyan hover:underline text-[13px] font-semibold transition-colors shadow-sm"
               >
-                <Globe className="w-3.5 h-3.5" />
+                <Globe className="w-4 h-4" />
                 <span>Visit Website</span>
               </a>
             )}
             {isAdmin && (
               <button
                 onClick={() => setShowDeleteModal(true)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-rose-800/60 bg-rose-950/40 text-rose-400 hover:bg-rose-900/50 hover:border-rose-700 text-xs transition-colors"
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-slate-800/60 bg-slate-900 text-accent-rose hover:bg-slate-800 text-[13px] font-semibold transition-colors shadow-sm"
               >
-                <Trash2 className="w-3.5 h-3.5" />
+                <Trash2 className="w-4 h-4" />
                 <span>Delete</span>
               </button>
             )}
@@ -110,27 +110,27 @@ export const CompanyDetail: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Associated Contacts */}
-        <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm space-y-4">
-          <h3 className="font-semibold text-sm text-slate-100 flex items-center gap-2">
-            <Users className="w-4 h-4 text-brand-400" />
+        <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800/60 shadow-sm space-y-5">
+          <h3 className="font-semibold text-[15px] text-slate-100 flex items-center gap-2 tracking-tight">
+            <Users className="w-4 h-4 text-accent-blue" />
             <span>Contacts at {company.name} ({company.contacts?.length || 0})</span>
           </h3>
 
-          <div className="space-y-2 text-xs">
+          <div className="space-y-2 text-[13px]">
             {!company.contacts || company.contacts.length === 0 ? (
-              <p className="text-slate-500 py-4 text-center">No contacts listed.</p>
+              <p className="text-slate-500 py-6 text-center">No contacts listed.</p>
             ) : (
               company.contacts.map((c: any) => (
                 <div
                   key={c.id}
                   onClick={() => navigate(`/contacts/${c.id}`)}
-                  className="p-3 rounded-xl bg-slate-950/60 border border-slate-800 hover:border-slate-700 cursor-pointer flex items-center justify-between transition-colors group"
+                  className="p-3.5 rounded-xl bg-slate-950/40 border border-slate-800/40 hover:border-slate-700 hover:bg-slate-900/80 cursor-pointer flex items-center justify-between transition-all group"
                 >
                   <div>
-                    <span className="font-semibold text-slate-100 group-hover:text-brand-400">
+                    <span className="font-medium text-[13px] text-slate-200 group-hover:text-white transition-colors">
                       {c.fullName}
                     </span>
-                    <p className="text-[11px] text-slate-500">{c.jobTitle || 'Representative'} · {c.phone || c.email}</p>
+                    <p className="text-[11px] text-slate-400 mt-0.5">{c.jobTitle || 'Representative'} · {c.phone || c.email}</p>
                   </div>
                   <Badge variant="neutral" size="sm">{c.leadStatus}</Badge>
                 </div>
@@ -140,27 +140,27 @@ export const CompanyDetail: React.FC = () => {
         </div>
 
         {/* Associated Deals */}
-        <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm space-y-4">
-          <h3 className="font-semibold text-sm text-slate-100 flex items-center gap-2">
-            <Kanban className="w-4 h-4 text-amber-400" />
+        <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800/60 shadow-sm space-y-5">
+          <h3 className="font-semibold text-[15px] text-slate-100 flex items-center gap-2 tracking-tight">
+            <Kanban className="w-4 h-4 text-accent-orange" />
             <span>Opportunities & Deals ({company.deals?.length || 0})</span>
           </h3>
 
-          <div className="space-y-2 text-xs">
+          <div className="space-y-2 text-[13px]">
             {!company.deals || company.deals.length === 0 ? (
-              <p className="text-slate-500 py-4 text-center">No deals in pipeline.</p>
+              <p className="text-slate-500 py-6 text-center">No deals in pipeline.</p>
             ) : (
               company.deals.map((d: any) => (
                 <div
                   key={d.id}
                   onClick={() => navigate('/pipeline')}
-                  className="p-3 rounded-xl bg-slate-950/60 border border-slate-800 hover:border-slate-700 cursor-pointer flex items-center justify-between transition-colors"
+                  className="p-3.5 rounded-xl bg-slate-950/40 border border-slate-800/40 hover:border-slate-700 hover:bg-slate-900/80 cursor-pointer flex items-center justify-between transition-all group"
                 >
                   <div>
-                    <span className="font-semibold text-slate-200">{d.name}</span>
-                    <p className="text-[11px] text-slate-500 font-mono">Stage: {d.stage}</p>
+                    <span className="font-medium text-[13px] text-slate-200 group-hover:text-white transition-colors">{d.name}</span>
+                    <p className="text-[11px] text-slate-400 font-mono mt-0.5">Stage: {d.stage}</p>
                   </div>
-                  <span className="font-bold font-mono text-brand-400">
+                  <span className="font-bold font-mono text-[13px] text-slate-100 tracking-tight">
                     {formatCurrency(d.value)}
                   </span>
                 </div>

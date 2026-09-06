@@ -60,18 +60,18 @@ export const EmailsPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold text-slate-100 flex items-center gap-2">
-            <Mail className="w-5 h-5 text-brand-400" />
+          <h1 className="text-2xl font-bold text-slate-100 flex items-center gap-2.5 tracking-tight">
+            <Mail className="w-6 h-6 text-accent-cyan" />
             <span>Email Outreach & Campaign History</span>
           </h1>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <p className="text-[13px] text-slate-400 mt-1">
             Manage cold email outreach, track delivery, opens, and client replies.
           </p>
         </div>
 
         <button
           onClick={() => setShowSendModal(true)}
-          className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-500 text-xs font-semibold text-white shadow-sm transition-colors"
+          className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white hover:bg-slate-200 text-[13px] font-semibold text-slate-900 shadow-sm transition-colors"
         >
           <Plus className="w-4 h-4" />
           <span>Compose Email</span>
@@ -79,11 +79,11 @@ export const EmailsPage: React.FC = () => {
       </div>
 
       {/* Integration Status Notice */}
-      <div className="p-4 rounded-xl border bg-slate-900/80 flex items-start gap-3">
+      <div className="p-4 rounded-xl border bg-slate-900/60 shadow-sm flex items-start gap-3">
         {isConfigured ? (
           <>
-            <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-            <div className="text-xs">
+            <CheckCircle2 className="w-5 h-5 text-accent-emerald shrink-0 mt-0.5" />
+            <div className="text-[13px]">
               <span className="font-semibold text-slate-200">Email Gateway Connected</span>
               <p className="text-slate-400 mt-0.5">
                 SMTP / SendGrid provider configured. Outbound emails are tracked with real-time webhooks.
@@ -92,8 +92,8 @@ export const EmailsPage: React.FC = () => {
           </>
         ) : (
           <>
-            <AlertCircle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-            <div className="text-xs">
+            <AlertCircle className="w-5 h-5 text-accent-rose shrink-0 mt-0.5" />
+            <div className="text-[13px]">
               <span className="font-semibold text-slate-200">Email Credentials Not Configured</span>
               <p className="text-slate-400 mt-0.5">
                 SMTP or SendGrid keys are currently unconfigured in .env. Outbound emails will display a setup alert. You can still preview templates, log communication, and simulate webhook delivery.
@@ -106,37 +106,37 @@ export const EmailsPage: React.FC = () => {
       {/* Two Columns: Sent Log & Templates */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Sent Logs (2 cols) */}
-        <div className="lg:col-span-2 p-6 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm space-y-4">
-          <h3 className="font-semibold text-sm text-slate-100">Outreach Dispatch Log</h3>
+        <div className="lg:col-span-2 p-6 rounded-2xl bg-slate-900 border border-slate-800/60 shadow-sm space-y-4">
+          <h3 className="font-semibold text-[15px] text-slate-100 tracking-tight">Outreach Dispatch Log</h3>
 
           <div className="overflow-x-auto">
-            <table className="w-full text-xs text-left">
-              <thead className="text-[11px] uppercase tracking-wider text-slate-400 border-b border-slate-800">
+            <table className="w-full text-[13px] text-left">
+              <thead className="text-[11px] font-semibold tracking-wider text-slate-400 border-b border-slate-800/60">
                 <tr>
-                  <th className="py-2.5 px-3">Recipient</th>
-                  <th className="py-2.5 px-3">Subject</th>
-                  <th className="py-2.5 px-3">Status</th>
-                  <th className="py-2.5 px-3">Sent Time</th>
-                  <th className="py-2.5 px-3 text-right">Webhook Test</th>
+                  <th className="py-3 px-3 uppercase">Recipient</th>
+                  <th className="py-3 px-3 uppercase">Subject</th>
+                  <th className="py-3 px-3 uppercase">Status</th>
+                  <th className="py-3 px-3 uppercase">Sent Time</th>
+                  <th className="py-3 px-3 text-right uppercase">Webhook Test</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60 font-mono text-[11px]">
+              <tbody className="divide-y divide-slate-800/40">
                 {logs.length === 0 ? (
                   <tr>
-                    <td colSpan={5} className="py-6 text-center text-slate-500 font-sans">
+                    <td colSpan={5} className="py-8 text-center text-slate-500">
                       No emails sent yet.
                     </td>
                   </tr>
                 ) : (
                   logs.map(log => (
-                    <tr key={log.id} className="hover:bg-slate-800/30 transition-colors">
-                      <td className="py-2.5 px-3 font-semibold text-slate-200 truncate max-w-[140px]">
+                    <tr key={log.id} className="hover:bg-slate-800/40 transition-colors group">
+                      <td className="py-3.5 px-3 font-medium text-slate-200 truncate max-w-[140px] group-hover:text-white transition-colors">
                         {log.to}
                       </td>
-                      <td className="py-2.5 px-3 text-slate-300 font-sans truncate max-w-[180px]">
+                      <td className="py-3.5 px-3 text-slate-400 truncate max-w-[180px]">
                         {log.subject}
                       </td>
-                      <td className="py-2.5 px-3">
+                      <td className="py-3.5 px-3">
                         <Badge
                           variant={log.status === 'REPLIED' ? 'success' : log.status === 'OPENED' ? 'info' : 'neutral'}
                           size="sm"
@@ -144,24 +144,24 @@ export const EmailsPage: React.FC = () => {
                           {log.status}
                         </Badge>
                       </td>
-                      <td className="py-2.5 px-3 text-slate-500">
+                      <td className="py-3.5 px-3 text-slate-500 text-[11px] font-mono">
                         {formatDateTime(log.createdAt)}
                       </td>
-                      <td className="py-2.5 px-3 text-right">
-                        <div className="flex items-center justify-end gap-1 font-sans">
+                      <td className="py-3.5 px-3 text-right">
+                        <div className="flex items-center justify-end gap-2">
                           <button
                             onClick={() => simulateEvent('open', log.to)}
-                            className="px-1.5 py-0.5 text-[10px] rounded bg-cyan-950/60 text-cyan-300 border border-cyan-800 hover:bg-cyan-900/60"
+                            className="px-2 py-1 text-[11px] font-medium rounded text-slate-400 hover:text-accent-cyan hover:bg-slate-800 transition-colors"
                             title="Simulate open webhook"
                           >
-                            Open
+                            Simulate Open
                           </button>
                           <button
                             onClick={() => simulateEvent('reply', log.to)}
-                            className="px-1.5 py-0.5 text-[10px] rounded bg-emerald-950/60 text-emerald-300 border border-emerald-800 hover:bg-emerald-900/60"
+                            className="px-2 py-1 text-[11px] font-medium rounded text-slate-400 hover:text-accent-emerald hover:bg-slate-800 transition-colors"
                             title="Simulate reply webhook"
                           >
-                            Reply
+                            Simulate Reply
                           </button>
                         </div>
                       </td>
@@ -174,32 +174,32 @@ export const EmailsPage: React.FC = () => {
         </div>
 
         {/* Templates Library (1 col) */}
-        <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm space-y-4">
-          <h3 className="font-semibold text-sm text-slate-100">Template Library</h3>
-          <div className="space-y-2 text-xs">
+        <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800/60 shadow-sm space-y-4">
+          <h3 className="font-semibold text-[15px] text-slate-100 tracking-tight">Template Library</h3>
+          <div className="space-y-2 text-[13px]">
             {templates.map(t => (
               <button
                 key={t.id}
                 onClick={() => setSelectedTemplate(t)}
-                className={`w-full p-3 rounded-xl border text-left transition-colors ${
+                className={`w-full p-3.5 rounded-xl border text-left transition-all ${
                   selectedTemplate?.id === t.id
-                    ? 'bg-brand-950/40 border-brand-500 text-slate-100'
-                    : 'bg-slate-950/60 border-slate-800 text-slate-300 hover:border-slate-700'
+                    ? 'bg-accent-blue/10 border-accent-blue/40 shadow-sm'
+                    : 'bg-slate-950/40 border-slate-800/60 hover:bg-slate-900/80 hover:border-slate-700'
                 }`}
               >
-                <p className="font-semibold">{t.name}</p>
-                <p className="text-[11px] text-slate-400 truncate mt-0.5">{t.subject}</p>
+                <p className={`font-semibold ${selectedTemplate?.id === t.id ? 'text-accent-blue' : 'text-slate-200'}`}>{t.name}</p>
+                <p className="text-[12px] text-slate-400 truncate mt-1">{t.subject}</p>
               </button>
             ))}
           </div>
 
           {selectedTemplate && (
-            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-2">
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+            <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800/60 text-[13px] space-y-3 mt-4">
+              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block">
                 Template Preview
               </span>
-              <p className="font-semibold text-slate-200">Subject: {selectedTemplate.subject}</p>
-              <pre className="text-[11px] text-slate-400 font-sans whitespace-pre-wrap leading-relaxed max-h-48 overflow-y-auto">
+              <p className="font-medium text-slate-200">Subject: {selectedTemplate.subject}</p>
+              <pre className="text-[13px] text-slate-300 font-sans whitespace-pre-wrap leading-relaxed max-h-48 overflow-y-auto mt-2">
                 {selectedTemplate.body}
               </pre>
             </div>

@@ -65,61 +65,61 @@ export const CreateContactModal: React.FC<CreateContactModalProps> = ({
       subtitle="Add a new potential client or relationship to the CRM"
       maxWidth="lg"
     >
-      <form onSubmit={handleSubmit} className="space-y-4 text-xs">
-        <div className="grid grid-cols-2 gap-3">
+      <form onSubmit={handleSubmit} className="space-y-5 text-[13px]">
+        <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block font-semibold text-slate-300 mb-1">Full Name *</label>
+            <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Full Name *</label>
             <input
               type="text"
               required
               placeholder="e.g. Kunal Sharma"
               value={formData.fullName}
               onChange={e => setFormData({ ...formData, fullName: e.target.value })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+              className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors placeholder:text-slate-600"
             />
           </div>
           <div>
-            <label className="block font-semibold text-slate-300 mb-1">Job Title</label>
+            <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Job Title</label>
             <input
               type="text"
               placeholder="e.g. Founder & Head Coach"
               value={formData.jobTitle}
               onChange={e => setFormData({ ...formData, jobTitle: e.target.value })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+              className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors placeholder:text-slate-600"
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block font-semibold text-slate-300 mb-1">Email Address</label>
+            <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Email Address</label>
             <input
               type="email"
               placeholder="e.g. kunal@gymnacity.com"
               value={formData.email}
               onChange={e => setFormData({ ...formData, email: e.target.value })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+              className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors placeholder:text-slate-600"
             />
           </div>
           <div>
-            <label className="block font-semibold text-slate-300 mb-1">Phone Number</label>
+            <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Phone Number</label>
             <input
               type="text"
-              placeholder="e.g. 097533 37771 or +91 9753337771"
+              placeholder="e.g. 097533 37771"
               value={formData.phone}
               onChange={e => setFormData({ ...formData, phone: e.target.value })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+              className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors placeholder:text-slate-600"
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block font-semibold text-slate-300 mb-1">Company / Gym</label>
+            <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Company / Gym</label>
             <select
               value={formData.companyId}
               onChange={e => setFormData({ ...formData, companyId: e.target.value })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+              className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors"
             >
               <option value="">None / Independent</option>
               {companies.map(c => (
@@ -128,24 +128,24 @@ export const CreateContactModal: React.FC<CreateContactModalProps> = ({
             </select>
           </div>
           <div>
-            <label className="block font-semibold text-slate-300 mb-1">Website URL</label>
+            <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Website URL</label>
             <input
               type="url"
               placeholder="https://example.com"
               value={formData.website}
               onChange={e => setFormData({ ...formData, website: e.target.value })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+              className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors placeholder:text-slate-600"
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-3 gap-4">
           <div>
-            <label className="block font-semibold text-slate-300 mb-1">Service Interest</label>
+            <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Service Interest</label>
             <select
               value={formData.serviceInterest}
               onChange={e => setFormData({ ...formData, serviceInterest: e.target.value })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+              className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors"
             >
               <option value="WEBSITE_NEW">Website (Brand New)</option>
               <option value="WEBSITE_REDESIGN">Website Redesign</option>
@@ -158,11 +158,11 @@ export const CreateContactModal: React.FC<CreateContactModalProps> = ({
           </div>
 
           <div>
-            <label className="block font-semibold text-slate-300 mb-1">Lead Status</label>
+            <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Lead Status</label>
             <select
               value={formData.leadStatus}
               onChange={e => setFormData({ ...formData, leadStatus: e.target.value })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+              className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors"
             >
               <option value="NEW">New</option>
               <option value="CONTACTED">Contacted</option>
@@ -174,11 +174,11 @@ export const CreateContactModal: React.FC<CreateContactModalProps> = ({
           </div>
 
           <div>
-            <label className="block font-semibold text-slate-300 mb-1">Lead Source</label>
+            <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Lead Source</label>
             <select
               value={formData.leadSource}
               onChange={e => setFormData({ ...formData, leadSource: e.target.value })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+              className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors"
             >
               <option value="COLD_OUTREACH">Cold Outreach</option>
               <option value="REFERRAL">Referral</option>
@@ -191,18 +191,18 @@ export const CreateContactModal: React.FC<CreateContactModalProps> = ({
           </div>
         </div>
 
-        <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
+        <div className="flex items-center justify-end gap-3 pt-5 mt-2 border-t border-slate-800/60">
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 rounded-lg border border-slate-800 text-slate-300 hover:bg-slate-800 transition-colors"
+            className="px-5 py-2.5 rounded-xl border border-slate-800 text-slate-300 hover:bg-slate-800 transition-colors font-semibold text-[13px]"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={loading}
-            className="px-5 py-2 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-semibold transition-colors disabled:opacity-50"
+            className="px-5 py-2.5 rounded-xl bg-white hover:bg-slate-200 text-slate-900 font-bold transition-colors disabled:opacity-50 text-[13px] shadow-sm"
           >
             {loading ? 'Creating...' : 'Create Contact'}
           </button>

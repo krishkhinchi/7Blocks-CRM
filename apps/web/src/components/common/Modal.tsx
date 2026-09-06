@@ -20,16 +20,35 @@ export const Modal: React.FC<ModalProps> = ({
   maxWidth = 'lg'
 }) => {
   useEffect(() => {
+    let previouslyFocusedElement: Element | null = null;
+    
+    if (isOpen) {
+      previouslyFocusedElement = document.activeElement;
+      document.body.style.overflow = 'hidden';
+    }
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
+    
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleKeyDown);
     }
+    
     return () => {
       document.body.style.overflow = 'unset';
       window.removeEventListener('keydown', handleKeyDown);
+      
+      // Safe focus restoration
+      if (
+        previouslyFocusedElement && 
+        typeof previouslyFocusedElement.focus === 'function' &&
+        document.body &&
+        typeof document.body.contains === 'function' &&
+        document.body.contains(previouslyFocusedElement)
+      ) {
+        previouslyFocusedElement.focus();
+      }
     };
   }, [isOpen, onClose]);
 
@@ -54,19 +73,19 @@ export const Modal: React.FC<ModalProps> = ({
       {/* Modal Dialog */}
       <div
         className={cn(
-          'relative w-full rounded-xl bg-slate-900 border border-slate-800 shadow-2xl overflow-hidden transition-all duration-200 z-10 max-h-[90vh] flex flex-col animate-in zoom-in-95',
+          'relative w-full rounded-2xl bg-slate-900 border border-slate-800/60 shadow-2xl overflow-hidden transition-all duration-200 z-10 max-h-[90vh] flex flex-col animate-in zoom-in-95',
           maxWidths[maxWidth]
         )}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-900/50">
+        <div className="flex items-center justify-between px-6 py-5 border-b border-slate-800/60 bg-slate-900">
           <div>
-            <h3 className="text-base font-semibold text-slate-100">{title}</h3>
-            {subtitle && <p className="text-xs text-slate-400 mt-0.5">{subtitle}</p>}
+            <h3 className="text-[17px] font-semibold text-slate-100 tracking-tight">{title}</h3>
+            {subtitle && <p className="text-[13px] text-slate-400 mt-1">{subtitle}</p>}
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-slate-400 hover:text-slate-100 hover:bg-slate-800 transition-colors"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-100 hover:bg-slate-800/60 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>

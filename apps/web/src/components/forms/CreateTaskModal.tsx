@@ -77,36 +77,36 @@ export const CreateTaskModal: React.FC<CreateTaskModalProps> = ({
       subtitle={defaultContactName ? `Schedule task for ${defaultContactName}` : 'Set a reminder or action item for yourself'}
       maxWidth="md"
     >
-      <form onSubmit={handleSubmit} className="space-y-4 text-xs">
+      <form onSubmit={handleSubmit} className="space-y-5 text-[13px]">
         <div>
-          <label className="block font-semibold text-slate-300 mb-1">Task Title *</label>
+          <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Task Title *</label>
           <input
             type="text"
             required
             placeholder="e.g. Call back boss regarding proposal milestones"
             value={formData.title}
             onChange={e => setFormData({ ...formData, title: e.target.value })}
-            className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+            className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors placeholder:text-slate-600"
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block font-semibold text-slate-300 mb-1">Due Date & Time *</label>
+            <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Due Date & Time *</label>
             <input
               type="datetime-local"
               required
               value={formData.dueDate}
               onChange={e => setFormData({ ...formData, dueDate: e.target.value })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+              className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors text-slate-400"
             />
           </div>
           <div>
-            <label className="block font-semibold text-slate-300 mb-1">Priority</label>
+            <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Priority</label>
             <select
               value={formData.priority}
               onChange={e => setFormData({ ...formData, priority: e.target.value })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none font-medium"
+              className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none font-medium transition-colors"
             >
               <option value="LOW">Low</option>
               <option value="MEDIUM">Medium</option>
@@ -118,11 +118,11 @@ export const CreateTaskModal: React.FC<CreateTaskModalProps> = ({
 
         {!defaultContactId && (
           <div>
-            <label className="block font-semibold text-slate-300 mb-1">Associated Contact</label>
+            <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Associated Contact</label>
             <select
               value={formData.contactId}
               onChange={e => setFormData({ ...formData, contactId: e.target.value })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+              className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors"
             >
               <option value="">None / General Task</option>
               {contacts.map(c => (
@@ -133,28 +133,28 @@ export const CreateTaskModal: React.FC<CreateTaskModalProps> = ({
         )}
 
         <div>
-          <label className="block font-semibold text-slate-300 mb-1">Description / Details</label>
+          <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Description / Details</label>
           <textarea
             rows={3}
             placeholder="Context, requirements, links or discussion notes..."
             value={formData.description}
             onChange={e => setFormData({ ...formData, description: e.target.value })}
-            className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none resize-none"
+            className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none resize-none transition-colors placeholder:text-slate-600"
           />
         </div>
 
-        <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-800">
+        <div className="flex items-center justify-end gap-3 pt-5 mt-2 border-t border-slate-800/60">
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 rounded-lg border border-slate-800 text-slate-300 hover:bg-slate-800 transition-colors"
+            className="px-5 py-2.5 rounded-xl border border-slate-800 text-slate-300 hover:bg-slate-800 transition-colors font-semibold text-[13px]"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={loading}
-            className="px-5 py-2 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-semibold transition-colors disabled:opacity-50"
+            className="px-5 py-2.5 rounded-xl bg-white hover:bg-slate-200 text-slate-900 font-bold transition-colors disabled:opacity-50 text-[13px] shadow-sm"
           >
             {loading ? 'Scheduling...' : 'Create Task'}
           </button>
