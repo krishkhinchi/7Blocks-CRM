@@ -101,11 +101,11 @@ export const SendEmailModal: React.FC<SendEmailModalProps> = ({
       subtitle={contact ? `Sending outreach email to ${contact.fullName}` : 'Compose sales email'}
       maxWidth="lg"
     >
-      <form onSubmit={handleSend} className="space-y-4 text-xs">
+      <form onSubmit={handleSend} className="space-y-5 text-[13px]">
         {isConfigured === false && (
-          <div className="p-3 rounded-lg bg-amber-950/40 border border-amber-500/30 text-amber-200">
-            <p className="font-semibold text-xs">Email Integration Not Configured</p>
-            <p className="text-[11px] opacity-90 mt-0.5">
+          <div className="p-4 rounded-xl bg-accent-rose/10 border border-accent-rose/20 text-accent-rose">
+            <p className="font-semibold text-[13px]">Email Integration Not Configured</p>
+            <p className="text-[12px] opacity-90 mt-1">
               SMTP or SendGrid credentials are not set in .env. Outbound sending is simulated or paused until configured in Settings.
             </p>
           </div>
@@ -113,11 +113,11 @@ export const SendEmailModal: React.FC<SendEmailModalProps> = ({
 
         {/* Template Selector */}
         <div>
-          <label className="block font-semibold text-slate-300 mb-1">Select Email Template</label>
+          <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Select Email Template</label>
           <select
             value={selectedTemplate}
             onChange={e => handleTemplateChange(e.target.value)}
-            className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+            className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors"
           >
             <option value="">Choose a pre-built template or write custom...</option>
             {templates.map(t => (
@@ -128,55 +128,55 @@ export const SendEmailModal: React.FC<SendEmailModalProps> = ({
 
         {/* To */}
         <div>
-          <label className="block font-semibold text-slate-300 mb-1">To *</label>
+          <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">To *</label>
           <input
             type="email"
             required
             placeholder="client@example.com"
             value={to}
             onChange={e => setTo(e.target.value)}
-            className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+            className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors placeholder:text-slate-600"
           />
         </div>
 
         {/* Subject */}
         <div>
-          <label className="block font-semibold text-slate-300 mb-1">Subject *</label>
+          <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Subject *</label>
           <input
             type="text"
             required
             placeholder="Email subject line..."
             value={subject}
             onChange={e => setSubject(e.target.value)}
-            className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none font-medium"
+            className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none font-medium transition-colors placeholder:text-slate-600"
           />
         </div>
 
         {/* Body */}
         <div>
-          <label className="block font-semibold text-slate-300 mb-1">Message Body *</label>
+          <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Message Body *</label>
           <textarea
             rows={8}
             required
             placeholder="Write your email body..."
             value={body}
             onChange={e => setBody(e.target.value)}
-            className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-slate-100 focus:border-brand-500 focus:outline-none resize-none font-sans leading-relaxed"
+            className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none resize-none font-sans leading-relaxed transition-colors placeholder:text-slate-600"
           />
         </div>
 
-        <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-800">
+        <div className="flex items-center justify-end gap-3 pt-5 mt-2 border-t border-slate-800/60">
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 rounded-lg border border-slate-800 text-slate-300 hover:bg-slate-800 transition-colors"
+            className="px-5 py-2.5 rounded-xl border border-slate-800 text-slate-300 hover:bg-slate-800 transition-colors font-semibold text-[13px]"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={loading || isConfigured === false}
-            className="px-5 py-2 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-semibold transition-colors disabled:opacity-50"
+            className="px-5 py-2.5 rounded-xl bg-white hover:bg-slate-200 text-slate-900 font-bold transition-colors disabled:opacity-50 text-[13px] shadow-sm"
           >
             {loading ? 'Sending...' : 'Send Outreach Email'}
           </button>

@@ -124,47 +124,47 @@ export const ImportsPage: React.FC = () => {
     <div className="p-8 space-y-8 max-w-5xl mx-auto">
       {/* Header */}
       <div>
-        <h1 className="text-xl font-bold text-slate-100 flex items-center gap-2">
-          <FileSpreadsheet className="w-5 h-5 text-brand-400" />
+        <h1 className="text-2xl font-bold text-slate-100 flex items-center gap-2.5 tracking-tight">
+          <FileSpreadsheet className="w-6 h-6 text-accent-blue" />
           <span>Excel & CSV Migration Wizard</span>
         </h1>
-        <p className="text-xs text-slate-400 mt-0.5">
+        <p className="text-[13px] text-slate-400 mt-1">
           Migrate existing lead spreadsheets, call outcomes, and outreach history into normalized CRM records.
         </p>
       </div>
 
       {/* Step Progress Bar */}
-      <div className="flex items-center justify-between p-3 rounded-xl bg-slate-900 border border-slate-800 text-xs">
-        <div className={`flex items-center gap-2 font-semibold ${step === 'UPLOAD' ? 'text-brand-400' : 'text-slate-400'}`}>
-          <span className="w-5 h-5 rounded-full bg-slate-800 flex items-center justify-center text-[10px]">1</span>
+      <div className="flex items-center justify-between p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/60 shadow-sm text-[13px]">
+        <div className={`flex items-center gap-2.5 font-semibold ${step === 'UPLOAD' ? 'text-accent-blue' : 'text-slate-400'}`}>
+          <span className="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center text-[11px]">1</span>
           <span>Upload File</span>
         </div>
-        <div className="w-12 h-0.5 bg-slate-800" />
-        <div className={`flex items-center gap-2 font-semibold ${step === 'MAP' ? 'text-brand-400' : 'text-slate-400'}`}>
-          <span className="w-5 h-5 rounded-full bg-slate-800 flex items-center justify-center text-[10px]">2</span>
+        <div className="w-12 h-0.5 bg-slate-800/60" />
+        <div className={`flex items-center gap-2.5 font-semibold ${step === 'MAP' ? 'text-accent-blue' : 'text-slate-400'}`}>
+          <span className="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center text-[11px]">2</span>
           <span>Column & Semantic Mapping</span>
         </div>
-        <div className="w-12 h-0.5 bg-slate-800" />
-        <div className={`flex items-center gap-2 font-semibold ${step === 'RESULTS' ? 'text-emerald-400' : 'text-slate-400'}`}>
-          <span className="w-5 h-5 rounded-full bg-slate-800 flex items-center justify-center text-[10px]">3</span>
+        <div className="w-12 h-0.5 bg-slate-800/60" />
+        <div className={`flex items-center gap-2.5 font-semibold ${step === 'RESULTS' ? 'text-accent-emerald' : 'text-slate-400'}`}>
+          <span className="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center text-[11px]">3</span>
           <span>Results & Summary</span>
         </div>
       </div>
 
       {/* STEP 1: UPLOAD */}
       {step === 'UPLOAD' && (
-        <div className="p-12 rounded-2xl border-2 border-dashed border-slate-800 hover:border-brand-500/50 bg-slate-900/40 text-center transition-colors">
-          <div className="w-16 h-16 rounded-2xl bg-brand-600/10 border border-brand-500/20 flex items-center justify-center text-brand-400 mx-auto mb-4">
+        <div className="p-12 rounded-2xl border-2 border-dashed border-slate-800/60 hover:border-accent-blue/50 bg-slate-900/40 text-center transition-colors shadow-sm">
+          <div className="w-16 h-16 rounded-2xl bg-accent-blue/10 border border-accent-blue/20 flex items-center justify-center text-accent-blue mx-auto mb-5">
             <UploadCloud className="w-8 h-8" />
           </div>
-          <h3 className="text-base font-semibold text-slate-200">
+          <h3 className="text-lg font-semibold text-slate-200">
             Select an Excel (.xlsx, .xls) or CSV file
           </h3>
-          <p className="text-xs text-slate-400 max-w-md mx-auto mt-1 mb-6">
+          <p className="text-[13px] text-slate-400 max-w-md mx-auto mt-2 mb-8 leading-relaxed">
             Supports both raw scraped lead lists and 7BLOCKS operational spreadsheets (with SEND, Calling, and Response columns).
           </p>
 
-          <label className="cursor-pointer inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-md transition-colors">
+          <label className="cursor-pointer inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-slate-200 text-slate-900 text-[13px] font-bold shadow-sm transition-colors">
             <span>Choose Spreadsheet File</span>
             <input
               type="file"
@@ -179,7 +179,7 @@ export const ImportsPage: React.FC = () => {
           </label>
 
           {loading && (
-            <p className="text-xs text-brand-400 mt-4 animate-pulse">
+            <p className="text-[13px] text-accent-blue mt-5 animate-pulse font-medium">
               Parsing rows and validating data headers...
             </p>
           )}
@@ -190,11 +190,11 @@ export const ImportsPage: React.FC = () => {
       {step === 'MAP' && preview && (
         <div className="space-y-6">
           {preview.is7BlocksCore && (
-            <div className="p-4 rounded-xl bg-indigo-950/40 border border-indigo-500/30 text-xs text-indigo-200 flex items-start gap-3">
-              <CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" />
+            <div className="p-5 rounded-2xl bg-indigo-950/40 border border-indigo-500/30 text-[13px] text-indigo-200 flex items-start gap-4">
+              <CheckCircle2 className="w-6 h-6 text-indigo-400 shrink-0 mt-0.5" />
               <div>
-                <p className="font-semibold text-sm">7BLOCKS Core Spreadsheet Detected!</p>
-                <p className="text-slate-300 mt-0.5 leading-relaxed">
+                <p className="font-semibold text-[15px] tracking-tight">7BLOCKS Core Spreadsheet Detected!</p>
+                <p className="text-indigo-300 mt-1 leading-relaxed">
                   We've automatically detected dual email and phone outreach tracks. Call response notes (e.g. "CALLING AT 5:30 (BOSS)", "meeting left", "SEND DEMO") will be automatically mapped to activities and scheduled tasks.
                 </p>
               </div>
@@ -202,18 +202,18 @@ export const ImportsPage: React.FC = () => {
           )}
 
           {/* Mapping Table */}
-          <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm space-y-4">
-            <h3 className="font-semibold text-sm text-slate-100">
+          <div className="p-8 rounded-2xl bg-slate-900 border border-slate-800/60 shadow-sm space-y-6">
+            <h3 className="font-semibold text-[15px] text-slate-100 tracking-tight">
               Map Spreadsheet Columns to CRM Fields
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 text-[13px]">
               <div>
-                <label className="block font-semibold text-slate-300 mb-1">Company / Gym Name</label>
+                <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Company / Gym Name</label>
                 <select
                   value={mapping.companyName || ''}
                   onChange={e => setMapping({ ...mapping, companyName: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+                  className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors"
                 >
                   <option value="">(None / Skip)</option>
                   {preview.headers.map((h: string) => (
@@ -223,11 +223,11 @@ export const ImportsPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="block font-semibold text-slate-300 mb-1">Contact Person Name</label>
+                <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Contact Person Name</label>
                 <select
                   value={mapping.fullName || ''}
                   onChange={e => setMapping({ ...mapping, fullName: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+                  className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors"
                 >
                   <option value="">(None / Skip)</option>
                   {preview.headers.map((h: string) => (
@@ -237,11 +237,11 @@ export const ImportsPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="block font-semibold text-slate-300 mb-1">Email Address</label>
+                <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Email Address</label>
                 <select
                   value={mapping.email || ''}
                   onChange={e => setMapping({ ...mapping, email: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+                  className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors"
                 >
                   <option value="">(None / Skip)</option>
                   {preview.headers.map((h: string) => (
@@ -251,11 +251,11 @@ export const ImportsPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="block font-semibold text-slate-300 mb-1">Direct Phone Number</label>
+                <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Direct Phone Number</label>
                 <select
                   value={mapping.phone || ''}
                   onChange={e => setMapping({ ...mapping, phone: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+                  className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors"
                 >
                   <option value="">(None / Skip)</option>
                   {preview.headers.map((h: string) => (
@@ -265,11 +265,11 @@ export const ImportsPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="block font-semibold text-slate-300 mb-1">Website URL</label>
+                <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Website URL</label>
                 <select
                   value={mapping.website || ''}
                   onChange={e => setMapping({ ...mapping, website: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+                  className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors"
                 >
                   <option value="">(None / Skip)</option>
                   {preview.headers.map((h: string) => (
@@ -279,11 +279,11 @@ export const ImportsPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="block font-semibold text-slate-300 mb-1">Email Outreach Column (SEND Y/N)</label>
+                <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Email Outreach Column (SEND Y/N)</label>
                 <select
                   value={mapping.emailSentCol || ''}
                   onChange={e => setMapping({ ...mapping, emailSentCol: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+                  className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors"
                 >
                   <option value="">(None / Skip)</option>
                   {preview.headers.map((h: string) => (
@@ -293,11 +293,11 @@ export const ImportsPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="block font-semibold text-slate-300 mb-1">Calling Outreach Column (Calling Y/N)</label>
+                <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Calling Outreach Column (Calling Y/N)</label>
                 <select
                   value={mapping.callingCol || ''}
                   onChange={e => setMapping({ ...mapping, callingCol: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+                  className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors"
                 >
                   <option value="">(None / Skip)</option>
                   {preview.headers.map((h: string) => (
@@ -307,11 +307,11 @@ export const ImportsPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="block font-semibold text-slate-300 mb-1">Call Outcome Response Column</label>
+                <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Call Outcome Response Column</label>
                 <select
                   value={mapping.callResponseCol || ''}
                   onChange={e => setMapping({ ...mapping, callResponseCol: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+                  className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors"
                 >
                   <option value="">(None / Skip)</option>
                   {preview.headers.map((h: string) => (
@@ -322,13 +322,13 @@ export const ImportsPage: React.FC = () => {
             </div>
 
             {/* Duplicate Handling */}
-            <div className="pt-4 border-t border-slate-800">
-              <label className="block font-semibold text-slate-300 mb-2">
+            <div className="pt-6 border-t border-slate-800/60">
+              <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-3">
                 Duplicate Contact Strategy
               </label>
-              <div className="grid grid-cols-3 gap-3">
-                <label className={`p-3 rounded-xl border text-xs cursor-pointer transition-colors ${
-                  duplicateHandling === 'skip' ? 'bg-brand-950/40 border-brand-500 text-slate-100' : 'bg-slate-950 border-slate-800 text-slate-400'
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <label className={`p-4 rounded-xl border text-[13px] cursor-pointer transition-colors shadow-sm ${
+                  duplicateHandling === 'skip' ? 'bg-accent-blue/10 border-accent-blue/50 text-slate-100' : 'bg-slate-950/40 border-slate-800/60 text-slate-400'
                 }`}>
                   <input
                     type="radio"
@@ -337,12 +337,12 @@ export const ImportsPage: React.FC = () => {
                     onChange={() => setDuplicateHandling('skip')}
                     className="hidden"
                   />
-                  <span className="font-semibold block text-slate-200">Skip Duplicates</span>
-                  <span className="text-[11px] opacity-80">Existing records are left untouched.</span>
+                  <span className="font-semibold block text-slate-200 mb-1">Skip Duplicates</span>
+                  <span className="text-[12px] opacity-80 leading-relaxed block">Existing records are left untouched.</span>
                 </label>
 
-                <label className={`p-3 rounded-xl border text-xs cursor-pointer transition-colors ${
-                  duplicateHandling === 'update' ? 'bg-brand-950/40 border-brand-500 text-slate-100' : 'bg-slate-950 border-slate-800 text-slate-400'
+                <label className={`p-4 rounded-xl border text-[13px] cursor-pointer transition-colors shadow-sm ${
+                  duplicateHandling === 'update' ? 'bg-accent-blue/10 border-accent-blue/50 text-slate-100' : 'bg-slate-950/40 border-slate-800/60 text-slate-400'
                 }`}>
                   <input
                     type="radio"
@@ -351,12 +351,12 @@ export const ImportsPage: React.FC = () => {
                     onChange={() => setDuplicateHandling('update')}
                     className="hidden"
                   />
-                  <span className="font-semibold block text-slate-200">Update Existing</span>
-                  <span className="text-[11px] opacity-80">Appends new outreach notes and updates fields.</span>
+                  <span className="font-semibold block text-slate-200 mb-1">Update Existing</span>
+                  <span className="text-[12px] opacity-80 leading-relaxed block">Appends new outreach notes and updates fields.</span>
                 </label>
 
-                <label className={`p-3 rounded-xl border text-xs cursor-pointer transition-colors ${
-                  duplicateHandling === 'create_anyway' ? 'bg-brand-950/40 border-brand-500 text-slate-100' : 'bg-slate-950 border-slate-800 text-slate-400'
+                <label className={`p-4 rounded-xl border text-[13px] cursor-pointer transition-colors shadow-sm ${
+                  duplicateHandling === 'create_anyway' ? 'bg-accent-blue/10 border-accent-blue/50 text-slate-100' : 'bg-slate-950/40 border-slate-800/60 text-slate-400'
                 }`}>
                   <input
                     type="radio"
@@ -365,18 +365,18 @@ export const ImportsPage: React.FC = () => {
                     onChange={() => setDuplicateHandling('create_anyway')}
                     className="hidden"
                   />
-                  <span className="font-semibold block text-slate-200">Create Separate</span>
-                  <span className="text-[11px] opacity-80">Creates new record regardless of duplicate match.</span>
+                  <span className="font-semibold block text-slate-200 mb-1">Create Separate</span>
+                  <span className="text-[12px] opacity-80 leading-relaxed block">Creates new record regardless of duplicate match.</span>
                 </label>
               </div>
             </div>
 
             {/* Actions */}
-            <div className="flex items-center justify-between pt-4 border-t border-slate-800">
+            <div className="flex items-center justify-between pt-6 mt-2 border-t border-slate-800/60">
               <button
                 type="button"
                 onClick={handleReset}
-                className="px-4 py-2 rounded-lg border border-slate-800 text-slate-300 hover:bg-slate-800 text-xs font-semibold"
+                className="px-5 py-2.5 rounded-xl border border-slate-800/60 text-slate-300 hover:bg-slate-800 transition-colors text-[13px] font-semibold"
               >
                 Back / Choose Another File
               </button>
@@ -384,7 +384,7 @@ export const ImportsPage: React.FC = () => {
                 type="button"
                 onClick={handleExecuteImport}
                 disabled={loading}
-                className="px-6 py-2.5 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-semibold text-xs transition-colors shadow-md disabled:opacity-50"
+                className="px-6 py-2.5 rounded-xl bg-white hover:bg-slate-200 text-slate-900 font-bold text-[13px] transition-colors shadow-sm disabled:opacity-50"
               >
                 {loading ? 'Processing Import...' : `Import ${preview.totalRows} Leads`}
               </button>
@@ -395,38 +395,38 @@ export const ImportsPage: React.FC = () => {
 
       {/* STEP 3: RESULTS SUMMARY */}
       {step === 'RESULTS' && results && (
-        <div className="p-8 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm space-y-6">
-          <div className="flex items-center gap-3 text-emerald-400">
-            <CheckCircle2 className="w-8 h-8" />
+        <div className="p-8 rounded-2xl bg-slate-900 border border-slate-800/60 shadow-sm space-y-6">
+          <div className="flex items-center gap-4 text-accent-emerald">
+            <CheckCircle2 className="w-10 h-10" />
             <div>
-              <h3 className="text-lg font-bold text-slate-100">Import Batch Finished</h3>
-              <p className="text-xs text-slate-400">Batch ID: {results.batchId}</p>
+              <h3 className="text-xl font-bold text-slate-100 tracking-tight">Import Batch Finished</h3>
+              <p className="text-[13px] text-slate-400">Batch ID: {results.batchId}</p>
             </div>
           </div>
 
-          <div className="grid grid-cols-4 gap-4 text-xs font-mono">
-            <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
-              <span className="text-slate-400 block mb-1">Total Rows</span>
-              <span className="text-xl font-bold text-slate-100">{results.totalRows}</span>
+          <div className="grid grid-cols-4 gap-4 text-[13px] font-mono">
+            <div className="p-5 rounded-2xl bg-slate-950/40 border border-slate-800/60 shadow-sm">
+              <span className="text-slate-400 block mb-2 text-[12px] font-sans font-semibold uppercase tracking-wider">Total Rows</span>
+              <span className="text-2xl font-bold text-slate-100">{results.totalRows}</span>
             </div>
-            <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
-              <span className="text-emerald-400 block mb-1">Imported New</span>
-              <span className="text-xl font-bold text-emerald-400">{results.importedCount}</span>
+            <div className="p-5 rounded-2xl bg-slate-950/40 border border-slate-800/60 shadow-sm">
+              <span className="text-accent-emerald block mb-2 text-[12px] font-sans font-semibold uppercase tracking-wider">Imported New</span>
+              <span className="text-2xl font-bold text-accent-emerald">{results.importedCount}</span>
             </div>
-            <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
-              <span className="text-cyan-400 block mb-1">Updated</span>
-              <span className="text-xl font-bold text-cyan-400">{results.updatedCount}</span>
+            <div className="p-5 rounded-2xl bg-slate-950/40 border border-slate-800/60 shadow-sm">
+              <span className="text-accent-cyan block mb-2 text-[12px] font-sans font-semibold uppercase tracking-wider">Updated</span>
+              <span className="text-2xl font-bold text-accent-cyan">{results.updatedCount}</span>
             </div>
-            <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
-              <span className="text-amber-400 block mb-1">Skipped</span>
-              <span className="text-xl font-bold text-amber-400">{results.skippedCount}</span>
+            <div className="p-5 rounded-2xl bg-slate-950/40 border border-slate-800/60 shadow-sm">
+              <span className="text-amber-400 block mb-2 text-[12px] font-sans font-semibold uppercase tracking-wider">Skipped</span>
+              <span className="text-2xl font-bold text-amber-400">{results.skippedCount}</span>
             </div>
           </div>
 
           {results.errors && results.errors.length > 0 && (
-            <div className="p-4 rounded-xl bg-rose-950/30 border border-rose-500/30 text-xs">
-              <p className="font-semibold text-rose-300 mb-2">Errors Encountered ({results.errors.length}):</p>
-              <div className="max-h-40 overflow-y-auto space-y-1 font-mono text-slate-300">
+            <div className="p-5 rounded-2xl bg-rose-950/30 border border-rose-500/30 text-[13px]">
+              <p className="font-semibold text-rose-300 mb-3">Errors Encountered ({results.errors.length}):</p>
+              <div className="max-h-40 overflow-y-auto space-y-1.5 font-mono text-slate-300 text-[12px]">
                 {results.errors.map((err: any, idx: number) => (
                   <p key={idx}>Row {err.row}: {err.error}</p>
                 ))}
@@ -434,10 +434,10 @@ export const ImportsPage: React.FC = () => {
             </div>
           )}
 
-          <div className="flex items-center gap-3 pt-4 border-t border-slate-800">
+          <div className="flex items-center gap-3 pt-5 border-t border-slate-800/60 mt-2">
             <button
               onClick={handleReset}
-              className="px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-semibold text-xs"
+              className="px-5 py-2.5 rounded-xl bg-white hover:bg-slate-200 text-slate-900 font-bold text-[13px] transition-colors shadow-sm"
             >
               Import Another Spreadsheet
             </button>
@@ -446,40 +446,40 @@ export const ImportsPage: React.FC = () => {
       )}
 
       {/* Import Batches History Table */}
-      <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 shadow-sm space-y-3">
-        <h3 className="font-semibold text-sm text-slate-100">Recent Import Batches</h3>
+      <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800/60 shadow-sm space-y-4">
+        <h3 className="font-semibold text-[15px] text-slate-100 tracking-tight">Recent Import Batches</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs text-left">
-            <thead className="text-[11px] uppercase tracking-wider text-slate-400 border-b border-slate-800">
+          <table className="w-full text-[13px] text-left">
+            <thead className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 border-b border-slate-800/60">
               <tr>
-                <th className="py-2.5 px-3">File Name</th>
-                <th className="py-2.5 px-3">Uploaded By</th>
-                <th className="py-2.5 px-3">Total Rows</th>
-                <th className="py-2.5 px-3">Imported</th>
-                <th className="py-2.5 px-3">Status</th>
-                <th className="py-2.5 px-3">Date</th>
+                <th className="py-3 px-3">File Name</th>
+                <th className="py-3 px-3">Uploaded By</th>
+                <th className="py-3 px-3">Total Rows</th>
+                <th className="py-3 px-3">Imported</th>
+                <th className="py-3 px-3">Status</th>
+                <th className="py-3 px-3">Date</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-slate-800/40">
               {batches.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="py-6 text-center text-slate-500">
+                  <td colSpan={6} className="py-8 text-center text-slate-500 text-[13px]">
                     No import history yet.
                   </td>
                 </tr>
               ) : (
                 batches.map(b => (
-                  <tr key={b.id} className="hover:bg-slate-800/30 transition-colors">
-                    <td className="py-2.5 px-3 font-semibold text-slate-200">{b.filename}</td>
-                    <td className="py-2.5 px-3 text-slate-400">{b.uploadedBy?.name}</td>
-                    <td className="py-2.5 px-3 font-mono">{b.totalRows}</td>
-                    <td className="py-2.5 px-3 font-mono text-emerald-400">{b.importedRows}</td>
-                    <td className="py-2.5 px-3">
+                  <tr key={b.id} className="hover:bg-slate-800/40 transition-colors group">
+                    <td className="py-3.5 px-3 font-semibold text-slate-200 group-hover:text-white">{b.filename}</td>
+                    <td className="py-3.5 px-3 text-slate-400">{b.uploadedBy?.name}</td>
+                    <td className="py-3.5 px-3 font-mono text-slate-300">{b.totalRows}</td>
+                    <td className="py-3.5 px-3 font-mono text-accent-emerald font-bold">{b.importedRows}</td>
+                    <td className="py-3.5 px-3">
                       <Badge variant={b.status === 'COMPLETED' ? 'success' : 'warning'}>
                         {b.status}
                       </Badge>
                     </td>
-                    <td className="py-2.5 px-3 font-mono text-slate-500">{formatDateTime(b.createdAt)}</td>
+                    <td className="py-3.5 px-3 font-mono text-slate-500">{formatDateTime(b.createdAt)}</td>
                   </tr>
                 ))
               )}

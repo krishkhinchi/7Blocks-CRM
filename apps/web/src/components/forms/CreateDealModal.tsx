@@ -79,22 +79,22 @@ export const CreateDealModal: React.FC<CreateDealModalProps> = ({
       subtitle="Track proposal value, stage, and revenue probability"
       maxWidth="md"
     >
-      <form onSubmit={handleSubmit} className="space-y-4 text-xs">
+      <form onSubmit={handleSubmit} className="space-y-5 text-[13px]">
         <div>
-          <label className="block font-semibold text-slate-300 mb-1">Deal Title *</label>
+          <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Deal Title *</label>
           <input
             type="text"
             required
             placeholder="e.g. Gold Coast Gym Website Redesign & SEO"
             value={formData.name}
             onChange={e => setFormData({ ...formData, name: e.target.value })}
-            className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+            className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors placeholder:text-slate-600"
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block font-semibold text-slate-300 mb-1">Deal Value (₹ INR) *</label>
+            <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Deal Value (₹ INR) *</label>
             <input
               type="number"
               min="0"
@@ -102,15 +102,15 @@ export const CreateDealModal: React.FC<CreateDealModalProps> = ({
               placeholder="e.g. 85000"
               value={formData.value}
               onChange={e => setFormData({ ...formData, value: e.target.value })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none font-mono"
+              className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none font-mono transition-colors placeholder:text-slate-600"
             />
           </div>
           <div>
-            <label className="block font-semibold text-slate-300 mb-1">Pipeline Stage</label>
+            <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Pipeline Stage</label>
             <select
               value={formData.stage}
               onChange={e => setFormData({ ...formData, stage: e.target.value })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none font-medium"
+              className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none font-medium transition-colors"
             >
               <option value="PROSPECTING">Prospecting (10%)</option>
               <option value="QUALIFICATION">Qualification (30%)</option>
@@ -122,13 +122,13 @@ export const CreateDealModal: React.FC<CreateDealModalProps> = ({
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block font-semibold text-slate-300 mb-1">Service Type</label>
+            <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Service Type</label>
             <select
               value={formData.serviceType}
               onChange={e => setFormData({ ...formData, serviceType: e.target.value })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+              className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors"
             >
               <option value="WEBSITE_NEW">Website (New)</option>
               <option value="WEBSITE_REDESIGN">Website Redesign</option>
@@ -140,23 +140,23 @@ export const CreateDealModal: React.FC<CreateDealModalProps> = ({
             </select>
           </div>
           <div>
-            <label className="block font-semibold text-slate-300 mb-1">Expected Close Date</label>
+            <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Expected Close Date</label>
             <input
               type="date"
               value={formData.expectedCloseDate}
               onChange={e => setFormData({ ...formData, expectedCloseDate: e.target.value })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+              className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors text-slate-400"
             />
           </div>
         </div>
 
         {!defaultContactId && (
           <div>
-            <label className="block font-semibold text-slate-300 mb-1">Associated Contact</label>
+            <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Associated Contact</label>
             <select
               value={formData.contactId}
               onChange={e => setFormData({ ...formData, contactId: e.target.value })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+              className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors"
             >
               <option value="">Select a contact...</option>
               {contacts.map(c => (
@@ -167,28 +167,28 @@ export const CreateDealModal: React.FC<CreateDealModalProps> = ({
         )}
 
         <div>
-          <label className="block font-semibold text-slate-300 mb-1">Notes / Deal Context</label>
+          <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Notes / Deal Context</label>
           <textarea
             rows={2}
             placeholder="Key deliverables, timeline expectations, tech stack..."
             value={formData.description}
             onChange={e => setFormData({ ...formData, description: e.target.value })}
-            className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none resize-none"
+            className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none resize-none transition-colors placeholder:text-slate-600"
           />
         </div>
 
-        <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-800">
+        <div className="flex items-center justify-end gap-3 pt-5 mt-2 border-t border-slate-800/60">
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 rounded-lg border border-slate-800 text-slate-300 hover:bg-slate-800 transition-colors"
+            className="px-5 py-2.5 rounded-xl border border-slate-800 text-slate-300 hover:bg-slate-800 transition-colors font-semibold text-[13px]"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={loading}
-            className="px-5 py-2 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-semibold transition-colors disabled:opacity-50"
+            className="px-5 py-2.5 rounded-xl bg-white hover:bg-slate-200 text-slate-900 font-bold transition-colors disabled:opacity-50 text-[13px] shadow-sm"
           >
             {loading ? 'Creating...' : 'Create Deal'}
           </button>

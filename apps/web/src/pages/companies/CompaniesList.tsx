@@ -96,11 +96,11 @@ export const CompaniesList: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold text-slate-100 flex items-center gap-2">
-            <Building2 className="w-5 h-5 text-brand-400" />
+          <h1 className="text-2xl font-bold text-slate-100 flex items-center gap-2.5 tracking-tight">
+            <Building2 className="w-6 h-6 text-accent-emerald" />
             <span>Companies & Gym Directory</span>
           </h1>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <p className="text-[13px] text-slate-400 mt-1">
             Accounts, facilities, and fitness chains tracked across India.
           </p>
         </div>
@@ -109,7 +109,7 @@ export const CompaniesList: React.FC = () => {
           {isAdmin && (
             <button
               onClick={() => setShowDeleteAllModal(true)}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-rose-600/10 hover:bg-rose-600/20 text-rose-500 border border-rose-600/20 text-xs font-semibold shadow-sm transition-colors"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-400 text-[13px] font-bold shadow-sm transition-colors"
             >
               <Trash2 className="w-4 h-4" />
               <span>Delete All Companies</span>
@@ -117,7 +117,7 @@ export const CompaniesList: React.FC = () => {
           )}
           <button
             onClick={() => setShowCreateModal(true)}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-500 text-xs font-semibold text-white shadow-sm transition-colors"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-slate-200 text-[13px] font-bold text-slate-900 shadow-sm transition-colors"
           >
             <Plus className="w-4 h-4" />
             <span>Add Company</span>
@@ -127,22 +127,22 @@ export const CompaniesList: React.FC = () => {
 
       {/* Search Toolbar */}
       <div className="relative max-w-md">
-        <Search className="w-3.5 h-3.5 text-slate-500 absolute left-3 top-2.5" />
+        <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-3" />
         <input
           type="text"
           placeholder="Search by gym name, domain, city..."
           value={search}
           onChange={e => setSearch(e.target.value)}
-          className="w-full bg-slate-900 border border-slate-800 rounded-lg pl-9 pr-3 py-2 text-xs text-slate-100 placeholder:text-slate-500 focus:border-brand-500 focus:outline-none"
+          className="w-full bg-slate-900/60 border border-slate-800/60 rounded-xl pl-10 pr-4 py-2.5 text-[13px] text-slate-100 placeholder:text-slate-500 focus:border-accent-emerald focus:outline-none shadow-sm transition-colors"
         />
       </div>
 
       {/* Grid of Company Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {loading ? (
-          <div className="col-span-3 text-center py-12 text-slate-500 text-xs">Loading companies...</div>
+          <div className="col-span-3 text-center py-16 text-slate-500 text-[13px]">Loading companies...</div>
         ) : !Array.isArray(companies) || companies.length === 0 ? (
-          <div className="col-span-3 text-center py-12 text-slate-500 text-xs border border-dashed border-slate-800 rounded-xl">
+          <div className="col-span-3 text-center py-16 text-slate-500 text-[13px] border-2 border-dashed border-slate-800/60 rounded-2xl bg-slate-900/20">
             No companies found matching your query.
           </div>
         ) : (
@@ -150,14 +150,14 @@ export const CompaniesList: React.FC = () => {
             <div
               key={comp.id}
               onClick={() => navigate(`/companies/${comp.id}`)}
-              className="p-5 rounded-xl border border-slate-800 bg-slate-900/80 hover:border-slate-700 transition-colors cursor-pointer group flex flex-col justify-between"
+              className="p-5 rounded-2xl border border-slate-800/60 bg-slate-900 shadow-sm hover:shadow-md hover:border-slate-700/80 transition-all cursor-pointer group flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-start justify-between gap-2">
-                  <h3 className="font-semibold text-sm text-slate-100 group-hover:text-brand-400 transition-colors line-clamp-1">
+                <div className="flex items-start justify-between gap-3">
+                  <h3 className="font-semibold text-[15px] text-slate-100 group-hover:text-white tracking-tight transition-colors line-clamp-1">
                     {comp.name}
                   </h3>
-                  <div className="flex items-center gap-1.5 shrink-0">
+                  <div className="flex items-center gap-2 shrink-0">
                     {isAdmin && (
                       <button
                         type="button"
@@ -166,38 +166,38 @@ export const CompaniesList: React.FC = () => {
                           e.stopPropagation();
                           setDeletingCompany(comp);
                         }}
-                        className="p-1 rounded text-slate-500 hover:text-rose-400 hover:bg-rose-950/40 transition-colors opacity-0 group-hover:opacity-100"
+                        className="p-1.5 rounded-md text-slate-500 hover:text-accent-rose hover:bg-slate-800/80 transition-colors opacity-0 group-hover:opacity-100"
                       >
-                        <Trash2 className="w-3.5 h-3.5" />
+                        <Trash2 className="w-4 h-4" />
                       </button>
                     )}
-                    <ExternalLink className="w-3.5 h-3.5 text-slate-600 group-hover:text-slate-300 shrink-0" />
+                    <ExternalLink className="w-4 h-4 text-slate-600 group-hover:text-slate-400 shrink-0 transition-colors" />
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 mt-2">
+                <div className="flex items-center gap-3 mt-3">
                   {comp.city && (
-                    <span className="flex items-center gap-1 text-[11px] text-slate-400">
-                      <MapPin className="w-3 h-3 text-slate-500" />
+                    <span className="flex items-center gap-1.5 text-[13px] text-slate-400 font-medium">
+                      <MapPin className="w-3.5 h-3.5 text-slate-500" />
                       {comp.city}
                     </span>
                   )}
                   {comp.domain && (
-                    <span className="flex items-center gap-1 text-[11px] text-cyan-400 font-mono truncate">
-                      <Globe className="w-3 h-3" />
+                    <span className="flex items-center gap-1.5 text-[13px] text-accent-cyan font-mono truncate">
+                      <Globe className="w-3.5 h-3.5" />
                       {comp.domain}
                     </span>
                   )}
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-4 mt-4 border-t border-slate-800/80 text-[11px] text-slate-400 font-mono">
-                <span className="flex items-center gap-1">
-                  <Users className="w-3 h-3 text-slate-500" />
+              <div className="flex items-center justify-between pt-4 mt-5 border-t border-slate-800/50 text-[11px] text-slate-400 font-mono font-medium">
+                <span className="flex items-center gap-1.5 bg-slate-950 px-2 py-1 rounded-md border border-slate-800/50">
+                  <Users className="w-3.5 h-3.5 text-accent-blue" />
                   {comp._count?.contacts || 0} Contacts
                 </span>
-                <span className="flex items-center gap-1">
-                  <Kanban className="w-3 h-3 text-slate-500" />
+                <span className="flex items-center gap-1.5 bg-slate-950 px-2 py-1 rounded-md border border-slate-800/50">
+                  <Kanban className="w-3.5 h-3.5 text-accent-orange" />
                   {comp._count?.deals || 0} Deals
                 </span>
               </div>
@@ -317,58 +317,58 @@ export const CompaniesList: React.FC = () => {
         subtitle="Record facility details, website domain, and location"
         maxWidth="md"
       >
-        <form onSubmit={handleCreate} className="space-y-4 text-xs">
+        <form onSubmit={handleCreate} className="space-y-5 text-[13px]">
           <div>
-            <label className="block font-semibold text-slate-300 mb-1">Company / Gym Name *</label>
+            <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Company / Gym Name *</label>
             <input
               type="text"
               required
               placeholder="e.g. Iron Paradise Fitness"
               value={newCompany.name}
               onChange={e => setNewCompany({ ...newCompany, name: e.target.value })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+              className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-emerald focus:outline-none transition-colors"
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block font-semibold text-slate-300 mb-1">Website URL</label>
+              <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Website URL</label>
               <input
                 type="url"
                 placeholder="https://example.com"
                 value={newCompany.website}
                 onChange={e => setNewCompany({ ...newCompany, website: e.target.value })}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+                className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-emerald focus:outline-none transition-colors"
               />
             </div>
             <div>
-              <label className="block font-semibold text-slate-300 mb-1">City / Location</label>
+              <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">City / Location</label>
               <input
                 type="text"
                 placeholder="e.g. Mumbai, Thane, Pune"
                 value={newCompany.city}
                 onChange={e => setNewCompany({ ...newCompany, city: e.target.value })}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+                className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-emerald focus:outline-none transition-colors"
               />
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block font-semibold text-slate-300 mb-1">Industry</label>
+              <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Industry</label>
               <input
                 type="text"
                 value={newCompany.industry}
                 onChange={e => setNewCompany({ ...newCompany, industry: e.target.value })}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+                className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-emerald focus:outline-none transition-colors"
               />
             </div>
             <div>
-              <label className="block font-semibold text-slate-300 mb-1">Company Size</label>
+              <label className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Company Size</label>
               <select
                 value={newCompany.size}
                 onChange={e => setNewCompany({ ...newCompany, size: e.target.value })}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+                className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-emerald focus:outline-none transition-colors"
               >
                 <option value="1-10">1-10 employees</option>
                 <option value="10-25">10-25 employees</option>
@@ -378,17 +378,17 @@ export const CompaniesList: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-800">
+          <div className="flex items-center justify-end gap-3 pt-5 mt-2 border-t border-slate-800/60">
             <button
               type="button"
               onClick={() => setShowCreateModal(false)}
-              className="px-4 py-2 rounded-lg border border-slate-800 text-slate-300 hover:bg-slate-800 transition-colors"
+              className="px-5 py-2.5 rounded-xl border border-slate-800/60 text-slate-300 hover:bg-slate-800 transition-colors font-semibold"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-5 py-2 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-semibold transition-colors"
+              className="px-6 py-2.5 rounded-xl bg-white hover:bg-slate-200 text-slate-900 font-bold transition-colors shadow-sm"
             >
               Create Company
             </button>

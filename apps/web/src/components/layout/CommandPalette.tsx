@@ -83,9 +83,9 @@ export const CommandPalette: React.FC<{ isOpen: boolean; onClose: () => void }> 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 p-4">
       <div className="fixed inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative w-full max-w-2xl bg-slate-900 border border-slate-800 rounded-xl shadow-2xl overflow-hidden z-10 animate-in zoom-in-95">
+      <div className="relative w-full max-w-2xl bg-slate-900 border border-slate-800/60 rounded-xl shadow-2xl overflow-hidden z-10 animate-in zoom-in-95">
         {/* Search Input Bar */}
-        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-slate-800 bg-slate-900/80">
+        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-slate-800/60 bg-slate-900">
           <Search className="w-5 h-5 text-slate-400 shrink-0" />
           <input
             type="text"
@@ -116,7 +116,7 @@ export const CommandPalette: React.FC<{ isOpen: boolean; onClose: () => void }> 
           {contactsList.length > 0 && (
             <div>
               <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider px-2 mb-1 flex items-center gap-1.5">
-                <Users className="w-3.5 h-3.5 text-brand-400" />
+                <Users className="w-3.5 h-3.5 text-accent-blue" />
                 <span>Contacts ({contactsList.length})</span>
               </div>
               <div className="space-y-1">
@@ -124,10 +124,10 @@ export const CommandPalette: React.FC<{ isOpen: boolean; onClose: () => void }> 
                   <button
                     key={c.id}
                     onClick={() => handleSelect(`/contacts/${c.id}`)}
-                    className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-slate-800/80 text-left transition-colors group"
+                    className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors group"
                   >
                     <div>
-                      <span className="font-medium text-slate-100 group-hover:text-brand-400">
+                      <span className="font-medium text-slate-100 group-hover:text-accent-blue">
                         {c.fullName}
                       </span>
                       {c.company && (
@@ -146,7 +146,7 @@ export const CommandPalette: React.FC<{ isOpen: boolean; onClose: () => void }> 
           {companiesList.length > 0 && (
             <div>
               <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider px-2 mb-1 flex items-center gap-1.5">
-                <Building2 className="w-3.5 h-3.5 text-emerald-400" />
+                <Building2 className="w-3.5 h-3.5 text-accent-emerald" />
                 <span>Companies / Gyms ({companiesList.length})</span>
               </div>
               <div className="space-y-1">
@@ -154,10 +154,10 @@ export const CommandPalette: React.FC<{ isOpen: boolean; onClose: () => void }> 
                   <button
                     key={c.id}
                     onClick={() => handleSelect(`/companies/${c.id}`)}
-                    className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-slate-800/80 text-left transition-colors group"
+                    className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors group"
                   >
                     <div>
-                      <span className="font-medium text-slate-100 group-hover:text-emerald-400">
+                      <span className="font-medium text-slate-100 group-hover:text-accent-emerald">
                         {c.name}
                       </span>
                       {c.city && <span className="text-slate-400 ml-2">· {c.city}</span>}
@@ -174,7 +174,7 @@ export const CommandPalette: React.FC<{ isOpen: boolean; onClose: () => void }> 
           {dealsList.length > 0 && (
             <div>
               <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider px-2 mb-1 flex items-center gap-1.5">
-                <Kanban className="w-3.5 h-3.5 text-amber-400" />
+                <Kanban className="w-3.5 h-3.5 text-accent-orange" />
                 <span>Deals ({dealsList.length})</span>
               </div>
               <div className="space-y-1">
@@ -182,10 +182,10 @@ export const CommandPalette: React.FC<{ isOpen: boolean; onClose: () => void }> 
                   <button
                     key={d.id}
                     onClick={() => handleSelect('/pipeline')}
-                    className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-slate-800/80 text-left transition-colors group"
+                    className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors group"
                   >
                     <div>
-                      <span className="font-medium text-slate-100 group-hover:text-amber-400">
+                      <span className="font-medium text-slate-100 group-hover:text-accent-orange">
                         {d.name}
                       </span>
                       {d.company && <span className="text-slate-400 ml-2">· {d.company.name}</span>}
@@ -202,7 +202,7 @@ export const CommandPalette: React.FC<{ isOpen: boolean; onClose: () => void }> 
           {tasksList.length > 0 && (
             <div>
               <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider px-2 mb-1 flex items-center gap-1.5">
-                <CheckSquare className="w-3.5 h-3.5 text-purple-400" />
+                <CheckSquare className="w-3.5 h-3.5 text-accent-purple" />
                 <span>Tasks ({tasksList.length})</span>
               </div>
               <div className="space-y-1">
@@ -210,10 +210,10 @@ export const CommandPalette: React.FC<{ isOpen: boolean; onClose: () => void }> 
                   <button
                     key={t.id}
                     onClick={() => handleSelect('/tasks')}
-                    className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-slate-800/80 text-left transition-colors group"
+                    className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors group"
                   >
                     <div>
-                      <span className="font-medium text-slate-100 group-hover:text-purple-400">
+                      <span className="font-medium text-slate-100 group-hover:text-accent-purple">
                         {t.title}
                       </span>
                       <p className="text-[11px] text-slate-500">Priority: {t.priority} · Status: {t.status}</p>
@@ -227,7 +227,7 @@ export const CommandPalette: React.FC<{ isOpen: boolean; onClose: () => void }> 
         </div>
 
         {/* Footer shortcuts */}
-        <div className="px-4 py-2 bg-slate-950 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-500">
+        <div className="px-4 py-2.5 bg-slate-950 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-slate-500 font-medium">
           <span>Navigate with mouse or Tab</span>
           <span>Press ESC to close</span>
         </div>

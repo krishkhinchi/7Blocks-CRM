@@ -84,18 +84,18 @@ export const TasksPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold text-slate-100 flex items-center gap-2">
-            <CheckSquare className="w-5 h-5 text-brand-400" />
+          <h1 className="text-2xl font-bold text-slate-100 flex items-center gap-2.5 tracking-tight">
+            <CheckSquare className="w-6 h-6 text-accent-emerald" />
             <span>Tasks & Follow-up Engine</span>
           </h1>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <p className="text-[13px] text-slate-400 mt-1">
             Never lose a lead: track scheduled callbacks, demo dispatches, and meetings.
           </p>
         </div>
 
         <button
           onClick={() => setShowCreateModal(true)}
-          className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-500 text-xs font-semibold text-white shadow-sm transition-colors"
+          className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white hover:bg-slate-200 text-[13px] font-semibold text-slate-900 shadow-sm transition-colors"
         >
           <Plus className="w-4 h-4" />
           <span>New Task</span>
@@ -103,100 +103,100 @@ export const TasksPage: React.FC = () => {
       </div>
 
       {/* Categorized Tabs Bar */}
-      <div className="flex items-center gap-2 p-1 rounded-xl bg-slate-900 border border-slate-800 overflow-x-auto text-xs">
+      <div className="flex items-center gap-2 p-1.5 rounded-xl bg-slate-900 border border-slate-800/60 overflow-x-auto text-[13px] shadow-sm">
         <button
           onClick={() => setActiveTab('overdue')}
-          className={`flex items-center gap-2 px-3 py-1.5 rounded-lg font-semibold transition-colors ${
+          className={`flex items-center gap-2 px-3.5 py-2 rounded-lg font-semibold transition-colors shrink-0 ${
             activeTab === 'overdue'
-              ? 'bg-rose-600/20 text-rose-300 border border-rose-500/30 shadow-sm'
-              : 'text-slate-400 hover:text-slate-200'
+              ? 'bg-accent-rose/10 text-accent-rose border border-accent-rose/20 shadow-sm'
+              : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40 border border-transparent'
           }`}
         >
-          <AlertCircle className="w-3.5 h-3.5 text-rose-400" />
+          <AlertCircle className="w-4 h-4 text-accent-rose" />
           <span>Overdue</span>
-          <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-rose-950 text-rose-300 font-mono">
+          <span className={`px-2 py-0.5 rounded-full text-[11px] font-mono ${activeTab === 'overdue' ? 'bg-accent-rose/20' : 'bg-slate-800/60 text-slate-300'}`}>
             {stats.overdueCount}
           </span>
         </button>
 
         <button
           onClick={() => setActiveTab('today')}
-          className={`flex items-center gap-2 px-3 py-1.5 rounded-lg font-semibold transition-colors ${
+          className={`flex items-center gap-2 px-3.5 py-2 rounded-lg font-semibold transition-colors shrink-0 ${
             activeTab === 'today'
-              ? 'bg-brand-600/20 text-brand-300 border border-brand-500/30 shadow-sm'
-              : 'text-slate-400 hover:text-slate-200'
+              ? 'bg-accent-blue/10 text-accent-blue border border-accent-blue/20 shadow-sm'
+              : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40 border border-transparent'
           }`}
         >
-          <Clock className="w-3.5 h-3.5 text-amber-400" />
+          <Clock className="w-4 h-4 text-accent-blue" />
           <span>Due Today</span>
-          <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-slate-800 text-slate-300 font-mono">
+          <span className={`px-2 py-0.5 rounded-full text-[11px] font-mono ${activeTab === 'today' ? 'bg-accent-blue/20' : 'bg-slate-800/60 text-slate-300'}`}>
             {stats.todayCount}
           </span>
         </button>
 
         <button
           onClick={() => setActiveTab('tomorrow')}
-          className={`flex items-center gap-2 px-3 py-1.5 rounded-lg font-semibold transition-colors ${
+          className={`flex items-center gap-2 px-3.5 py-2 rounded-lg font-semibold transition-colors shrink-0 ${
             activeTab === 'tomorrow'
-              ? 'bg-brand-600/20 text-brand-300 border border-brand-500/30 shadow-sm'
-              : 'text-slate-400 hover:text-slate-200'
+              ? 'bg-accent-blue/10 text-accent-blue border border-accent-blue/20 shadow-sm'
+              : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40 border border-transparent'
           }`}
         >
           <span>Tomorrow</span>
-          <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-slate-800 text-slate-300 font-mono">
+          <span className={`px-2 py-0.5 rounded-full text-[11px] font-mono ${activeTab === 'tomorrow' ? 'bg-accent-blue/20' : 'bg-slate-800/60 text-slate-300'}`}>
             {data?.tomorrow?.length || 0}
           </span>
         </button>
 
         <button
           onClick={() => setActiveTab('thisWeek')}
-          className={`flex items-center gap-2 px-3 py-1.5 rounded-lg font-semibold transition-colors ${
+          className={`flex items-center gap-2 px-3.5 py-2 rounded-lg font-semibold transition-colors shrink-0 ${
             activeTab === 'thisWeek'
-              ? 'bg-brand-600/20 text-brand-300 border border-brand-500/30 shadow-sm'
-              : 'text-slate-400 hover:text-slate-200'
+              ? 'bg-accent-blue/10 text-accent-blue border border-accent-blue/20 shadow-sm'
+              : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40 border border-transparent'
           }`}
         >
           <span>This Week</span>
-          <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-slate-800 text-slate-300 font-mono">
+          <span className={`px-2 py-0.5 rounded-full text-[11px] font-mono ${activeTab === 'thisWeek' ? 'bg-accent-blue/20' : 'bg-slate-800/60 text-slate-300'}`}>
             {data?.thisWeek?.length || 0}
           </span>
         </button>
 
         <button
           onClick={() => setActiveTab('upcoming')}
-          className={`flex items-center gap-2 px-3 py-1.5 rounded-lg font-semibold transition-colors ${
+          className={`flex items-center gap-2 px-3.5 py-2 rounded-lg font-semibold transition-colors shrink-0 ${
             activeTab === 'upcoming'
-              ? 'bg-brand-600/20 text-brand-300 border border-brand-500/30 shadow-sm'
-              : 'text-slate-400 hover:text-slate-200'
+              ? 'bg-accent-blue/10 text-accent-blue border border-accent-blue/20 shadow-sm'
+              : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40 border border-transparent'
           }`}
         >
           <span>Later / Upcoming</span>
-          <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-slate-800 text-slate-300 font-mono">
+          <span className={`px-2 py-0.5 rounded-full text-[11px] font-mono ${activeTab === 'upcoming' ? 'bg-accent-blue/20' : 'bg-slate-800/60 text-slate-300'}`}>
             {data?.upcoming?.length || 0}
           </span>
         </button>
 
         <button
           onClick={() => setActiveTab('completed')}
-          className={`flex items-center gap-2 px-3 py-1.5 rounded-lg font-semibold transition-colors ${
+          className={`flex items-center gap-2 px-3.5 py-2 rounded-lg font-semibold transition-colors shrink-0 ${
             activeTab === 'completed'
-              ? 'bg-emerald-600/20 text-emerald-300 border border-emerald-500/30 shadow-sm'
-              : 'text-slate-400 hover:text-slate-200'
+              ? 'bg-accent-emerald/10 text-accent-emerald border border-accent-emerald/20 shadow-sm'
+              : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40 border border-transparent'
           }`}
         >
           <span>Completed</span>
-          <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-slate-800 text-slate-300 font-mono">
+          <span className={`px-2 py-0.5 rounded-full text-[11px] font-mono ${activeTab === 'completed' ? 'bg-accent-emerald/20' : 'bg-slate-800/60 text-slate-300'}`}>
             {stats.completedCount}
           </span>
         </button>
       </div>
 
       {/* Task Cards List */}
-      <div className="space-y-3">
+      <div className="space-y-4">
         {loading && !data ? (
-          <div className="p-12 text-center text-slate-500 text-xs">Loading tasks...</div>
+          <div className="p-12 text-center text-slate-500 text-[13px]">Loading tasks...</div>
         ) : tasksList.length === 0 ? (
-          <div className="p-12 rounded-xl border border-dashed border-slate-800 text-center text-slate-500 text-xs">
+          <div className="p-12 rounded-xl border border-dashed border-slate-800 text-center text-slate-500 text-[13px]">
             No tasks in this category. All caught up!
           </div>
         ) : (
@@ -204,11 +204,11 @@ export const TasksPage: React.FC = () => {
             <div
               key={task.id}
               onClick={() => task.contactId && navigate(`/contacts/${task.contactId}`)}
-              className={`p-4 rounded-xl border border-slate-800 bg-slate-900/80 hover:border-slate-700 flex flex-col md:flex-row md:items-center justify-between gap-3 cursor-pointer transition-colors group ${
+              className={`p-4 rounded-xl border border-slate-800/60 bg-slate-900 shadow-sm hover:border-slate-700 hover:bg-slate-800/40 flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer transition-colors group ${
                 task.status === 'COMPLETED' ? 'opacity-60 bg-slate-950/40' : ''
               }`}
             >
-              <div className="flex items-start gap-3 min-w-0">
+              <div className="flex items-start gap-4 min-w-0">
                 <input
                   type="checkbox"
                   checked={task.status === 'COMPLETED'}
@@ -216,47 +216,47 @@ export const TasksPage: React.FC = () => {
                     e.stopPropagation();
                     handleToggle(task.id);
                   }}
-                  className="rounded bg-slate-950 border-slate-700 text-brand-600 focus:ring-brand-500 mt-1"
+                  className="rounded bg-slate-950 border-slate-700 text-accent-emerald focus:ring-accent-emerald mt-1 cursor-pointer w-4 h-4"
                 />
 
-                <div className="min-w-0 space-y-1">
-                  <p className={`font-semibold text-xs text-slate-100 group-hover:text-brand-400 ${task.status === 'COMPLETED' ? 'line-through text-slate-500' : ''}`}>
+                <div className="min-w-0 space-y-1.5">
+                  <p className={`font-semibold text-[15px] text-slate-200 group-hover:text-accent-blue transition-colors tracking-tight ${task.status === 'COMPLETED' ? 'line-through text-slate-500' : ''}`}>
                     {task.title}
                   </p>
                   {task.description && (
-                    <p className="text-[11px] text-slate-400 line-clamp-1">{task.description}</p>
+                    <p className="text-[13px] text-slate-400 line-clamp-1">{task.description}</p>
                   )}
-                  <div className="flex items-center gap-3 text-[11px] text-slate-500 flex-wrap">
+                  <div className="flex items-center gap-4 text-[11px] text-slate-500 flex-wrap mt-1">
                     {task.contact && (
-                      <span className="flex items-center gap-1 text-slate-300 font-medium">
-                        <User className="w-3 h-3 text-slate-500" />
+                      <span className="flex items-center gap-1.5 text-slate-300 font-medium">
+                        <User className="w-3.5 h-3.5 text-slate-500" />
                         {task.contact.fullName}
                       </span>
                     )}
                     {task.company && (
-                      <span className="flex items-center gap-1 text-slate-400">
-                        <Building2 className="w-3 h-3 text-slate-500" />
+                      <span className="flex items-center gap-1.5 text-slate-400">
+                        <Building2 className="w-3.5 h-3.5 text-slate-500" />
                         {task.company.name}
                       </span>
                     )}
-                    <span className="flex items-center gap-1 font-mono text-slate-400">
-                      <Calendar className="w-3 h-3 text-slate-500" />
+                    <span className="flex items-center gap-1.5 font-mono text-slate-400">
+                      <Calendar className="w-3.5 h-3.5 text-slate-500" />
                       Due {formatDateTime(task.dueDate)}
                     </span>
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 shrink-0 self-end md:self-center">
+              <div className="flex items-center gap-3 shrink-0 self-end md:self-center">
                 <Badge variant={task.priority === 'URGENT' ? 'danger' : task.priority === 'HIGH' ? 'warning' : 'neutral'} size="sm">
                   {task.priority}
                 </Badge>
                 <button
                   onClick={e => handleDelete(task.id, e)}
-                  className="p-1 text-slate-500 hover:text-rose-400 rounded-md transition-colors"
+                  className="p-1.5 text-slate-500 hover:text-accent-rose hover:bg-slate-800 rounded-md transition-colors opacity-0 group-hover:opacity-100"
                   title="Delete task"
                 >
-                  <Trash2 className="w-3.5 h-3.5" />
+                  <Trash2 className="w-4 h-4" />
                 </button>
               </div>
             </div>

@@ -98,28 +98,28 @@ export const ContactDetail: React.FC = () => {
       </div>
 
       {/* Command Center Contact Header */}
-      <div className="p-6 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-sm space-y-5">
+      <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800/60 shadow-sm space-y-5">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           {/* Identity */}
           <div className="flex items-start gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-brand-600/20 border border-brand-500/30 flex items-center justify-center text-xl font-bold text-brand-400 shrink-0">
+            <div className="w-14 h-14 rounded-2xl bg-accent-blue/10 border border-accent-blue/20 flex items-center justify-center text-xl font-bold text-accent-blue shrink-0">
               {contact.fullName.slice(0, 2).toUpperCase()}
             </div>
             <div>
               <div className="flex items-center gap-2 flex-wrap">
-                <h1 className="text-xl font-bold text-slate-100">{contact.fullName}</h1>
+                <h1 className="text-2xl font-bold text-slate-100 tracking-tight">{contact.fullName}</h1>
                 <StatusBadge status={contact.leadStatus} />
                 <Badge variant="purple" size="sm">{contact.lifecycleStage}</Badge>
               </div>
 
-              <div className="flex items-center gap-3 text-xs text-slate-400 mt-1 flex-wrap">
+              <div className="flex items-center gap-3 text-[13px] text-slate-400 mt-2 flex-wrap font-medium">
                 {contact.jobTitle && <span>{contact.jobTitle}</span>}
                 {contact.company && (
                   <button
                     onClick={() => navigate(`/companies/${contact.company.id}`)}
-                    className="flex items-center gap-1 text-slate-300 hover:text-brand-400 transition-colors font-medium"
+                    className="flex items-center gap-1.5 text-slate-300 hover:text-accent-blue transition-colors font-medium"
                   >
-                    <Building2 className="w-3.5 h-3.5 text-slate-500" />
+                    <Building2 className="w-4 h-4 text-slate-500" />
                     <span>{contact.company.name}</span>
                   </button>
                 )}
@@ -128,9 +128,9 @@ export const ContactDetail: React.FC = () => {
                     href={contact.website}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-1 text-cyan-400 hover:underline"
+                    className="flex items-center gap-1.5 text-accent-cyan hover:underline"
                   >
-                    <Globe className="w-3.5 h-3.5" />
+                    <Globe className="w-4 h-4" />
                     <span>Website</span>
                   </a>
                 )}
@@ -142,80 +142,80 @@ export const ContactDetail: React.FC = () => {
           <div className="flex items-center gap-2 flex-wrap">
             <button
               onClick={() => setShowLogCall(true)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-sm transition-colors"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-accent-purple hover:bg-accent-purple/90 text-slate-950 text-[13px] font-semibold shadow-sm transition-colors"
             >
-              <Phone className="w-3.5 h-3.5" />
+              <Phone className="w-4 h-4" />
               <span>Log Call</span>
             </button>
             <button
               onClick={() => setShowSendEmail(true)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold shadow-sm transition-colors"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-accent-cyan hover:bg-accent-cyan/90 text-slate-950 text-[13px] font-semibold shadow-sm transition-colors"
             >
-              <Mail className="w-3.5 h-3.5" />
+              <Mail className="w-4 h-4" />
               <span>Send Email</span>
             </button>
             <button
               onClick={() => setShowCreateTask(true)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-700 bg-slate-800/80 hover:bg-slate-800 text-xs font-semibold text-slate-200 transition-colors"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-lg border border-slate-700 bg-slate-800 hover:bg-slate-700 text-[13px] font-semibold text-slate-200 transition-colors shadow-sm"
             >
-              <CheckSquare className="w-3.5 h-3.5 text-emerald-400" />
+              <CheckSquare className="w-4 h-4 text-accent-yellow" />
               <span>Task</span>
             </button>
             <button
               onClick={() => setShowCreateDeal(true)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-700 bg-slate-800/80 hover:bg-slate-800 text-xs font-semibold text-slate-200 transition-colors"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-lg border border-slate-700 bg-slate-800 hover:bg-slate-700 text-[13px] font-semibold text-slate-200 transition-colors shadow-sm"
             >
-              <Briefcase className="w-3.5 h-3.5 text-amber-400" />
+              <Briefcase className="w-4 h-4 text-accent-orange" />
               <span>Deal</span>
             </button>
           </div>
         </div>
 
         {/* Contact Info Pills */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 pt-3 border-t border-slate-800/80 text-xs">
-          <div className="p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/60">
-            <span className="text-[10px] text-slate-500 uppercase tracking-wider block mb-0.5">Direct Phone</span>
-            <span className="font-mono font-semibold text-slate-200">{contact.phone || '—'}</span>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 pt-5 border-t border-slate-800/60 text-[13px]">
+          <div className="p-3 rounded-xl bg-slate-950/40 border border-slate-800/40">
+            <span className="text-[11px] text-slate-500 uppercase tracking-wider block mb-1 font-semibold">Direct Phone</span>
+            <span className="font-mono font-medium text-slate-200">{contact.phone || '—'}</span>
           </div>
-          <div className="p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/60">
-            <span className="text-[10px] text-slate-500 uppercase tracking-wider block mb-0.5">Direct Email</span>
-            <span className="font-mono text-slate-200 truncate block">{contact.email || '—'}</span>
+          <div className="p-3 rounded-xl bg-slate-950/40 border border-slate-800/40">
+            <span className="text-[11px] text-slate-500 uppercase tracking-wider block mb-1 font-semibold">Direct Email</span>
+            <span className="font-mono font-medium text-slate-200 truncate block">{contact.email || '—'}</span>
           </div>
-          <div className="p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/60">
-            <span className="text-[10px] text-slate-500 uppercase tracking-wider block mb-0.5">Assigned Rep</span>
+          <div className="p-3 rounded-xl bg-slate-950/40 border border-slate-800/40">
+            <span className="text-[11px] text-slate-500 uppercase tracking-wider block mb-1 font-semibold">Assigned Rep</span>
             <span className="text-slate-200 font-medium">{contact.owner?.name || 'Unassigned'}</span>
           </div>
-          <div className="p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/60">
-            <span className="text-[10px] text-slate-500 uppercase tracking-wider block mb-0.5">Lead Source</span>
+          <div className="p-3 rounded-xl bg-slate-950/40 border border-slate-800/40">
+            <span className="text-[11px] text-slate-500 uppercase tracking-wider block mb-1 font-semibold">Lead Source</span>
             <span className="text-slate-200 font-medium">{contact.leadSource?.replace('_', ' ')}</span>
           </div>
         </div>
       </div>
 
       {/* Prominent NEXT BEST ACTION Card */}
-      <div className="p-4 rounded-2xl bg-gradient-to-r from-brand-950/40 via-slate-900 to-slate-900 border border-brand-500/30 flex items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-brand-600/20 border border-brand-500/30 flex items-center justify-center text-brand-400 shrink-0">
-            <Clock className="w-5 h-5" />
+      <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800/60 shadow-sm flex items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-xl bg-accent-yellow/10 border border-accent-yellow/20 flex items-center justify-center text-accent-yellow shrink-0">
+            <Clock className="w-6 h-6" />
           </div>
           <div>
-            <span className="text-[10px] font-bold text-brand-400 uppercase tracking-wider block">
+            <span className="text-[11px] font-bold text-accent-yellow uppercase tracking-wider block mb-1">
               Next Action
             </span>
             {nextTask ? (
-              <p className="font-semibold text-sm text-slate-100">
+              <p className="font-medium text-[15px] text-slate-100 tracking-tight">
                 {nextTask.title} — Due {formatDateTime(nextTask.dueDate)}
               </p>
             ) : upcomingMeeting ? (
-              <p className="font-semibold text-sm text-slate-100">
+              <p className="font-medium text-[15px] text-slate-100 tracking-tight">
                 Meeting: {upcomingMeeting.title} at {formatDateTime(upcomingMeeting.startTime)}
               </p>
             ) : contact.nextFollowUpAt ? (
-              <p className="font-semibold text-sm text-slate-100">
+              <p className="font-medium text-[15px] text-slate-100 tracking-tight">
                 Follow up scheduled for {formatDateTime(contact.nextFollowUpAt)}
               </p>
             ) : (
-              <p className="text-xs text-slate-400">
+              <p className="text-[13px] text-slate-400">
                 No next follow-up action scheduled. Ensure continuity by scheduling a task.
               </p>
             )}
@@ -224,7 +224,7 @@ export const ContactDetail: React.FC = () => {
 
         <button
           onClick={() => setShowCreateTask(true)}
-          className="px-3 py-1.5 rounded-lg bg-brand-600/20 text-brand-300 hover:bg-brand-600/30 border border-brand-500/40 text-xs font-semibold shrink-0 transition-colors"
+          className="px-4 py-2 rounded-lg bg-accent-yellow/10 text-accent-yellow hover:bg-accent-yellow/20 border border-accent-yellow/30 text-[13px] font-semibold shrink-0 transition-colors shadow-sm"
         >
           {nextTask ? 'Edit Task' : '+ Schedule Follow-up'}
         </button>
@@ -233,8 +233,8 @@ export const ContactDetail: React.FC = () => {
       {/* Main Dual-Column Workspace */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left 2 Cols: Activity Timeline Feed */}
-        <div className="lg:col-span-2 p-6 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm space-y-4">
-          <h2 className="text-sm font-semibold text-slate-100">
+        <div className="lg:col-span-2 p-6 rounded-2xl bg-slate-900 border border-slate-800/60 shadow-sm space-y-5">
+          <h2 className="text-[15px] font-semibold text-slate-100 tracking-tight">
             Complete Relationship History & Timeline
           </h2>
           <ActivityTimeline
@@ -247,27 +247,27 @@ export const ContactDetail: React.FC = () => {
         {/* Right 1 Col: Score, Deals, Tasks, Company details */}
         <div className="space-y-6">
           {/* Lead Scoring Card */}
-          <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm space-y-3">
+          <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800/60 shadow-sm space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-slate-200 flex items-center gap-1.5">
-                <Sparkles className="w-4 h-4 text-amber-400" />
+              <span className="text-[13px] font-semibold text-slate-200 flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-accent-yellow" />
                 <span>Lead Score & Health</span>
               </span>
-              <span className="text-lg font-bold font-mono text-emerald-400">
+              <span className="text-lg font-bold font-mono text-accent-emerald">
                 {contact.computedScore || contact.leadScore}/100
               </span>
             </div>
 
             {/* Score Progress Bar */}
-            <div className="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-800">
+            <div className="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-800/60">
               <div
-                className="h-full bg-gradient-to-r from-amber-500 to-emerald-500 rounded-full"
+                className="h-full bg-gradient-to-r from-accent-yellow to-accent-emerald rounded-full"
                 style={{ width: `${contact.computedScore || contact.leadScore}%` }}
               />
             </div>
 
             {/* Explainable Factors */}
-            <div className="space-y-1.5 pt-1 text-[11px] text-slate-400 font-mono">
+            <div className="space-y-1.5 pt-2 text-[11px] text-slate-400 font-mono">
               {(contact.scoreBreakdown || ['+10 Base profile created']).map((factor: string, i: number) => (
                 <div key={i} className="flex items-center justify-between">
                   <span>{factor}</span>
@@ -277,32 +277,32 @@ export const ContactDetail: React.FC = () => {
           </div>
 
           {/* Active Deals / Opportunities */}
-          <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm space-y-3">
+          <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800/60 shadow-sm space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-slate-200 flex items-center gap-1.5">
-                <Briefcase className="w-4 h-4 text-amber-400" />
+              <span className="text-[13px] font-semibold text-slate-200 flex items-center gap-2">
+                <Briefcase className="w-4 h-4 text-accent-orange" />
                 <span>Pipeline Deals ({contact.deals?.length || 0})</span>
               </span>
               <button
                 onClick={() => setShowCreateDeal(true)}
-                className="text-[11px] text-brand-400 hover:text-brand-300 font-semibold"
+                className="text-[11px] text-slate-400 hover:text-white font-semibold transition-colors"
               >
                 + Add Deal
               </button>
             </div>
 
-            <div className="space-y-2 text-xs">
+            <div className="space-y-2 text-[13px]">
               {!contact.deals || contact.deals.length === 0 ? (
-                <p className="text-xs text-slate-500 py-3 text-center">No active deals for this contact.</p>
+                <p className="text-[13px] text-slate-500 py-4 text-center">No active deals for this contact.</p>
               ) : (
                 contact.deals.map((deal: any) => (
                   <div
                     key={deal.id}
-                    className="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-slate-700 transition-colors"
+                    className="p-3.5 rounded-xl bg-slate-950/40 border border-slate-800/40 hover:border-slate-700 transition-colors"
                   >
-                    <div className="flex items-start justify-between gap-2">
-                      <span className="font-semibold text-slate-200 truncate">{deal.name}</span>
-                      <span className="font-mono font-bold text-brand-400">
+                    <div className="flex items-start justify-between gap-3">
+                      <span className="font-medium text-[13px] text-slate-200 truncate">{deal.name}</span>
+                      <span className="font-mono font-bold text-[13px] text-slate-100 tracking-tight">
                         {formatCurrency(deal.value)}
                       </span>
                     </div>
@@ -317,40 +317,40 @@ export const ContactDetail: React.FC = () => {
           </div>
 
           {/* Tasks & Action Items */}
-          <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm space-y-3">
+          <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800/60 shadow-sm space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-slate-200 flex items-center gap-1.5">
-                <CheckSquare className="w-4 h-4 text-emerald-400" />
+              <span className="text-[13px] font-semibold text-slate-200 flex items-center gap-2">
+                <CheckSquare className="w-4 h-4 text-accent-emerald" />
                 <span>Tasks ({contact.tasks?.length || 0})</span>
               </span>
               <button
                 onClick={() => setShowCreateTask(true)}
-                className="text-[11px] text-brand-400 hover:text-brand-300 font-semibold"
+                className="text-[11px] text-slate-400 hover:text-white font-semibold transition-colors"
               >
                 + Add Task
               </button>
             </div>
 
-            <div className="space-y-2 text-xs">
+            <div className="space-y-2 text-[13px]">
               {!contact.tasks || contact.tasks.length === 0 ? (
-                <p className="text-xs text-slate-500 py-3 text-center">No tasks scheduled.</p>
+                <p className="text-[13px] text-slate-500 py-4 text-center">No tasks scheduled.</p>
               ) : (
                 contact.tasks.map((task: any) => (
                   <div
                     key={task.id}
-                    className="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/80"
+                    className="flex items-start gap-3 p-3 rounded-xl bg-slate-950/40 border border-slate-800/40"
                   >
                     <input
                       type="checkbox"
                       checked={task.status === 'COMPLETED'}
                       onChange={() => handleToggleTask(task.id)}
-                      className="rounded bg-slate-900 border-slate-700 text-brand-600 focus:ring-brand-500 mt-0.5"
+                      className="rounded bg-slate-900 border-slate-700 text-accent-emerald focus:ring-accent-emerald mt-0.5"
                     />
                     <div className="flex-1 min-w-0">
-                      <p className={`font-semibold text-xs truncate ${task.status === 'COMPLETED' ? 'line-through text-slate-500' : 'text-slate-200'}`}>
+                      <p className={`font-medium text-[13px] truncate ${task.status === 'COMPLETED' ? 'line-through text-slate-500' : 'text-slate-200'}`}>
                         {task.title}
                       </p>
-                      <span className="text-[10px] text-slate-500 font-mono">
+                      <span className="text-[11px] text-slate-500 font-mono mt-0.5 block">
                         Due {formatDate(task.dueDate)}
                       </span>
                     </div>
@@ -362,20 +362,20 @@ export const ContactDetail: React.FC = () => {
 
           {/* Company Details */}
           {contact.company && (
-            <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm space-y-3 text-xs">
+            <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800/60 shadow-sm space-y-4 text-[13px]">
               <div className="flex items-center justify-between">
-                <span className="font-semibold text-slate-200 flex items-center gap-1.5">
-                  <Building2 className="w-4 h-4 text-slate-400" />
+                <span className="font-semibold text-slate-200 flex items-center gap-2">
+                  <Building2 className="w-4 h-4 text-slate-500" />
                   <span>{contact.company.name}</span>
                 </span>
                 <button
                   onClick={() => navigate(`/companies/${contact.company.id}`)}
-                  className="text-slate-400 hover:text-white"
+                  className="text-slate-400 hover:text-white transition-colors"
                 >
-                  <ExternalLink className="w-3.5 h-3.5" />
+                  <ExternalLink className="w-4 h-4" />
                 </button>
               </div>
-              <div className="space-y-1 text-slate-400 text-[11px]">
+              <div className="space-y-1.5 text-slate-400 text-[11px] font-medium">
                 {contact.company.city && <p>Location: {contact.company.city}</p>}
                 {contact.company.industry && <p>Industry: {contact.company.industry}</p>}
                 {contact.company.size && <p>Size: {contact.company.size} employees</p>}

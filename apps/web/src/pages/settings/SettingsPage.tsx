@@ -255,20 +255,20 @@ export const SettingsPage: React.FC = () => {
     <div className="p-8 space-y-8 max-w-5xl mx-auto">
       {/* Header */}
       <div>
-        <h1 className="text-xl font-bold text-slate-100 flex items-center gap-2">
-          <Settings className="w-5 h-5 text-brand-400" />
+        <h1 className="text-2xl font-bold text-slate-100 flex items-center gap-2.5 tracking-tight">
+          <Settings className="w-6 h-6 text-accent-blue" />
           <span>System & Organization Settings</span>
         </h1>
-        <p className="text-xs text-slate-400 mt-0.5">
+        <p className="text-[13px] text-slate-400 mt-1">
           Manage team members, roles, permissions, profile details, tags, and email architecture.
         </p>
       </div>
 
       {/* Profile Overview & Self-Editing */}
-      <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-6">
+      <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800/60 shadow-sm space-y-6">
         <div className="flex items-center justify-between">
-          <h3 className="font-semibold text-sm text-slate-100 flex items-center gap-2">
-            <Key className="w-4 h-4 text-brand-400" />
+          <h3 className="font-semibold text-[15px] text-slate-100 flex items-center gap-2 tracking-tight">
+            <Key className="w-5 h-5 text-accent-blue" />
             <span>Your Account Profile</span>
           </h3>
           <Badge variant={user?.role === 'ADMIN' ? 'danger' : user?.role === 'MANAGER' ? 'warning' : 'info'}>
@@ -277,13 +277,13 @@ export const SettingsPage: React.FC = () => {
         </div>
 
         {/* Avatar Upload / Preview Section */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 p-4 rounded-xl bg-slate-950/60 border border-slate-800/80">
-          <div className="relative group">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 p-5 rounded-xl bg-slate-950/40 border border-slate-800/40 shadow-sm">
+          <div className="relative group shrink-0">
             {user?.avatar ? (
               <img
                 src={user.avatar}
                 alt={user.name}
-                className="w-16 h-16 rounded-full object-cover border-2 border-brand-500/50 shadow-md"
+                className="w-16 h-16 rounded-full object-cover border-2 border-accent-blue/50 shadow-md"
               />
             ) : (
               <div className="w-16 h-16 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center font-bold text-lg text-slate-200">
@@ -292,14 +292,14 @@ export const SettingsPage: React.FC = () => {
             )}
             {isUploadingPhoto && (
               <div className="absolute inset-0 rounded-full bg-black/60 flex items-center justify-center">
-                <Loader2 className="w-5 h-5 text-brand-400 animate-spin" />
+                <Loader2 className="w-5 h-5 text-accent-blue animate-spin" />
               </div>
             )}
           </div>
 
           <div className="space-y-1.5 flex-1">
-            <p className="text-xs font-semibold text-slate-200">Profile Picture</p>
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[13px] font-semibold text-slate-200">Profile Picture</p>
+            <p className="text-[12px] text-slate-400">
               Supports PNG, JPEG, or WebP (max 2MB).
             </p>
             <div className="flex items-center gap-2 pt-1">
@@ -335,57 +335,57 @@ export const SettingsPage: React.FC = () => {
         </div>
 
         {/* Profile Info Form */}
-        <form onSubmit={handleSaveProfile} className="space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-            <div className="space-y-1">
-              <label className="text-slate-400 block text-[11px] font-medium">Full Name</label>
+        <form onSubmit={handleSaveProfile} className="space-y-5">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 text-[13px]">
+            <div className="space-y-1.5">
+              <label className="text-slate-400 block text-[11px] font-semibold uppercase tracking-wider">Full Name</label>
               <input
                 type="text"
                 value={profileName}
                 onChange={e => setProfileName(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+                className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors"
                 placeholder="Your full name"
                 required
               />
             </div>
 
-            <div className="space-y-1">
-              <label className="text-slate-400 block text-[11px] font-medium">Email Address</label>
+            <div className="space-y-1.5">
+              <label className="text-slate-400 block text-[11px] font-semibold uppercase tracking-wider">Email Address</label>
               <input
                 type="email"
                 value={profileEmail}
                 onChange={e => setProfileEmail(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-slate-100 focus:border-brand-500 focus:outline-none"
+                className="w-full bg-slate-950/40 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-100 focus:border-accent-blue focus:outline-none transition-colors"
                 placeholder="name@company.com"
                 required
               />
             </div>
 
-            <div className="space-y-1">
-              <label className="text-slate-400 block text-[11px] font-medium">Assigned Role</label>
-              <div className="w-full bg-slate-950/60 border border-slate-800/80 rounded-lg px-3 py-2 text-slate-400 flex items-center justify-between">
+            <div className="space-y-1.5">
+              <label className="text-slate-400 block text-[11px] font-semibold uppercase tracking-wider">Assigned Role</label>
+              <div className="w-full bg-slate-950/60 border border-slate-800/60 rounded-xl px-3.5 py-2.5 text-slate-400 flex items-center justify-between font-medium">
                 <span>{formatRoleLabel(user?.role || 'SALES_REP')}</span>
                 <span title="Role is managed by an Administrator" className="text-slate-500">
-                  <Lock className="w-3.5 h-3.5" />
+                  <Lock className="w-4 h-4" />
                 </span>
               </div>
             </div>
           </div>
 
-          <div className="flex justify-end pt-2">
+          <div className="flex justify-end pt-3">
             <button
               type="submit"
               disabled={!hasProfileChanges || isSavingProfile}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-500 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-semibold transition-colors shadow-sm"
+              className="flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-white hover:bg-slate-200 disabled:bg-slate-800 disabled:text-slate-500 disabled:cursor-not-allowed text-slate-900 text-[13px] font-semibold transition-colors shadow-sm"
             >
               {isSavingProfile ? (
                 <>
-                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  <Loader2 className="w-4 h-4 animate-spin" />
                   <span>Saving...</span>
                 </>
               ) : (
                 <>
-                  <Check className="w-3.5 h-3.5" />
+                  <Check className="w-4 h-4" />
                   <span>Save Profile</span>
                 </>
               )}
@@ -395,11 +395,11 @@ export const SettingsPage: React.FC = () => {
       </div>
 
       {/* Team Members List & Role Management */}
-      <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-4">
+      <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800/60 shadow-sm space-y-4">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="font-semibold text-sm text-slate-100 flex items-center gap-2">
-              <Users className="w-4 h-4 text-indigo-400" />
+            <h3 className="font-semibold text-[15px] text-slate-100 flex items-center gap-2 tracking-tight">
+              <Users className="w-5 h-5 text-accent-purple" />
               <span>
                 {isAdmin ? 'Team Members & Role Management' : 'Team Directory'} ({users.length})
               </span>
@@ -641,9 +641,9 @@ export const SettingsPage: React.FC = () => {
       )}
 
       {/* Tag Management */}
-      <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-4">
-        <h3 className="font-semibold text-sm text-slate-100 flex items-center gap-2">
-          <Tag className="w-4 h-4 text-emerald-400" />
+      <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800/60 shadow-sm space-y-5">
+        <h3 className="font-semibold text-[15px] text-slate-100 flex items-center gap-2 tracking-tight">
+          <Tag className="w-5 h-5 text-accent-emerald" />
           <span>Configurable Lead & Deal Tags</span>
         </h3>
 
@@ -690,9 +690,9 @@ export const SettingsPage: React.FC = () => {
       </div>
 
       {/* Email Integration Status */}
-      <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3 text-xs">
-        <h3 className="font-semibold text-sm text-slate-100 flex items-center gap-2">
-          <Mail className="w-4 h-4 text-cyan-400" />
+      <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800/60 shadow-sm space-y-4 text-[13px]">
+        <h3 className="font-semibold text-[15px] text-slate-100 flex items-center gap-2 tracking-tight">
+          <Mail className="w-5 h-5 text-accent-cyan" />
           <span>Email Architecture & Webhooks</span>
         </h3>
 
