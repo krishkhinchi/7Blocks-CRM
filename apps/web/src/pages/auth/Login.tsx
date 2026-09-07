@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../stores/auth';
 import { useToast } from '../../stores/toast';
+import { BrandLogo } from '../../components/common/BrandLogo';
 import { ArrowRight, Lock, Mail } from 'lucide-react';
 
 export const Login: React.FC = () => {
@@ -35,8 +36,8 @@ export const Login: React.FC = () => {
       <div className="w-full max-w-md relative z-10 space-y-6">
         {/* Brand Header */}
         <div className="text-center space-y-2">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-accent-blue text-white font-bold text-xl shadow-lg shadow-accent-blue/30 mb-2">
-            7B
+          <div className="inline-flex items-center justify-center mb-2">
+            <BrandLogo size="xl" />
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-100">
             7BLOCKS CRM
