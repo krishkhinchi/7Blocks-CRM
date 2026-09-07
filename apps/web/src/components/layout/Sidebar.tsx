@@ -15,11 +15,11 @@ import {
   ShieldAlert,
   Moon,
   Sun,
-  LogOut,
-  Hexagon
+  LogOut
 } from 'lucide-react';
 import { useAuth } from '../../stores/auth';
 import { useTheme } from '../../stores/theme';
+import { BrandLogo } from '../common/BrandLogo';
 import { cn } from '../../lib/utils';
 
 export const Sidebar: React.FC = () => {
@@ -45,15 +45,8 @@ export const Sidebar: React.FC = () => {
     <aside className="w-[260px] shrink-0 bg-slate-950 border-r border-slate-800/50 flex flex-col justify-between h-screen sticky top-0 select-none z-20">
       {/* Brand Header */}
       <div>
-        <div className="h-16 flex items-center gap-3 px-6 border-b border-slate-800/50">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-brand-600 flex items-center justify-center text-white shadow-lg shadow-brand-500/20">
-            <Hexagon className="w-5 h-5 fill-white/20" />
-          </div>
-          <div>
-            <h1 className="font-semibold text-[15px] tracking-wide text-slate-100">
-              SevenBlocks
-            </h1>
-          </div>
+        <div className="h-16 flex items-center px-5 border-b border-slate-800/50">
+          <BrandLogo size="md" showText={true} subtitle="ENTERPRISE SALES" />
         </div>
 
         {/* Navigation Links */}

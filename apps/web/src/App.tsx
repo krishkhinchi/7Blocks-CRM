@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from './stores/auth';
 import { ThemeProvider } from './stores/theme';
 import { ToastProvider } from './stores/toast';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
+import { BrandLogo } from './components/common/BrandLogo';
 
 // Layout
 import { Sidebar } from './components/layout/Sidebar';
@@ -55,9 +56,10 @@ const AppLayout: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center text-slate-400 text-sm">
+      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center text-slate-400 text-sm gap-4">
+        <BrandLogo size="lg" />
         <div className="flex items-center gap-3">
-          <div className="w-6 h-6 border-2 border-brand-500 border-t-transparent rounded-full animate-spin" />
+          <div className="w-5 h-5 border-2 border-brand-500 border-t-transparent rounded-full animate-spin" />
           <span>Starting 7BLOCKS CRM...</span>
         </div>
       </div>

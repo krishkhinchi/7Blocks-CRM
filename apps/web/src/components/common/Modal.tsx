@@ -20,10 +20,10 @@ export const Modal: React.FC<ModalProps> = ({
   maxWidth = 'lg'
 }) => {
   useEffect(() => {
-    let previouslyFocusedElement: Element | null = null;
+    let previouslyFocusedElement: HTMLElement | null = null;
     
     if (isOpen) {
-      previouslyFocusedElement = document.activeElement;
+      previouslyFocusedElement = document.activeElement as HTMLElement | null;
       document.body.style.overflow = 'hidden';
     }
 
